@@ -1,0 +1,131 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == max450 {
+    @media (max-width: 450px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower600-max450 {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower900-max600 {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower1200-max900 {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower1800-max1200 {
+    @media (max-width: 1800px) {
+      @content;
+    }
+  }
+}
+
+
+
+.App {
+    display: flex;
+    flex-direction:  column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background: url('/images/b-lt.png') no-repeat;
+    background: url('/images/b-lt.png') top left no-repeat, url('/images/b-rt2.png') top right no-repeat, url('/images/b-rb.png') bottom right no-repeat;
+    background-size: 50%;
+}
+
+.App-content {
+
+    width: 1600px;
+    margin: 0 auto;
+
+    @include respond(lower1800-max1200) {
+         width: 1200px;
+
+    }
+    @include respond(lower1200-max900) {
+         width: 900px;
+         margin: 0 auto;
+  
+    }
+    @include respond(lower900-max600) {
+         width: 600px;
+  
+    }
+   
+}
+
+.page-left {
+    float: left;
+    margin-top: 50px;
+    width: 170px;
+    img {
+        float: right;
+        width: 158px;
+    }
+    span {
+        float: right;
+        margin-top: 7px;
+        text-align: right;
+        font: 22px 'Helvetica';
+        font-weight: bold;
+        color: #000;
+        b {
+            color: #f02e25;
+        }
+    }
+}
+
+.page-right {
+    float: left;
+
+    width: 1430px;
+    @include respond(lower1800-max1200) {
+         width: 1030px;
+        /* background-color: cyan; */
+    }
+    @include respond(lower1200-max900) {
+        width: 730px;
+        /* background: orange;*/
+    }
+    @include respond(lower900-max600) {
+         width: 430px;
+        /* background: green;*/
+    }
+    @include respond(lower600-max450) {
+        /* background: red;*/
+    }
+    @include respond(max450) {
+        /* background: brown;*/
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

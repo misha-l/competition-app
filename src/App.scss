@@ -1,93 +1,127 @@
 @mixin respond($breakpoint) {
-  @if $breakpoint == max450 {
-    @media (max-width: 450px) {
-      @content;
+    @if $breakpoint==max450 {
+        @media (max-width: 450px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower600-max450 {
-    @media (max-width: 600px) {
-      @content;
+    @if $breakpoint==lower600-max450 {
+        @media (max-width: 600px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower900-max600 {
-    @media (max-width: 900px) {
-      @content;
+    @if $breakpoint==lower900-max600 {
+        @media (max-width: 900px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower1200-max900 {
-    @media (max-width: 1200px) {
-      @content;
+    @if $breakpoint==lower1200-max900 {
+        @media (max-width: 1200px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower1800-max1200 {
-    @media (max-width: 1800px) {
-      @content;
+    @if $breakpoint==lower1800-max1200 {
+        @media (max-width: 1800px) {
+            @content;
+        }
     }
-  }
 }
-
-
 
 .App {
     display: flex;
-    flex-direction:  column;
+    flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     width: 100%;
     text-align: center;
     background: url('/images/b-lt.png') no-repeat;
-    background: url('/images/b-lt.png') top left no-repeat, url('/images/b-rt2.png') top right no-repeat, url('/images/b-rb.png') bottom right no-repeat;
+    background: url('/images/b-lt.png') top left no-repeat, url('/images/b-rt2.png') top right no-repeat, url('/images/b-rb.png') bottom right no-repeat fixed;
     background-size: 50%;
 }
 
 .App-content {
-
     width: 1600px;
     margin: 0 auto;
-
     @include respond(lower1800-max1200) {
-         width: 1200px;
-
+        width: 1200px;
     }
     @include respond(lower1200-max900) {
-         width: 900px;
-         margin: 0 auto;
-  
+        width: 900px;
+        margin: 0 auto;
     }
     @include respond(lower900-max600) {
-         width: 600px;
-  
+        width: 600px;
+        margin: 0 auto;
     }
-   
+    @include respond(lower600-max450) {
+        width: 450px;
+        margin: 0 auto;
+    }
+    @include respond(max450) {
+        width: 300px;
+        margin: 0 auto;
+    }
 }
 
 .page-left {
     float: left;
     margin-top: 50px;
     width: 170px;
+
+    @include respond(lower600-max450) {
+        float: left;
+        position: relative;
+        width: 430px;
+      
+    }
+    @include respond(max450) {
+        width: 300px;
+
+    }
+
     img {
         float: right;
         width: 158px;
+
+        @include respond(lower600-max450){
+        float: left;
+        }
+
     }
-    span {
+    span.slogan2{display: none;
+        @include respond(lower600-max450){
+        display: block;
+        float: left;
+        margin-top: 7px;
+        font: 22px 'Helvetica';
+        font-weight: bold;
+        color: #000;
+        }
+    }
+    span.slogan1 {
         float: right;
         margin-top: 7px;
         text-align: right;
         font: 22px 'Helvetica';
         font-weight: bold;
         color: #000;
+
+        @include respond(lower600-max450){
+        display: none;
+        }
         b {
             color: #f02e25;
         }
     }
+
 }
 
 .page-right {
     float: left;
-
     width: 1430px;
+
     @include respond(lower1800-max1200) {
-         width: 1030px;
+        width: 1030px;
         /* background-color: cyan; */
     }
     @include respond(lower1200-max900) {
@@ -95,20 +129,20 @@
         /* background: orange;*/
     }
     @include respond(lower900-max600) {
-         width: 430px;
-        /* background: green;*/
+        width: 430px;
     }
     @include respond(lower600-max450) {
-        /* background: red;*/
+         width: 430px;
+
     }
     @include respond(max450) {
-        /* background: brown;*/
+         width: 300px;
     }
 }
 
 .App-header {
     background-color: #282c34;
-    min-height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

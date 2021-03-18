@@ -1,105 +1,135 @@
 @mixin respond($breakpoint) {
-  @if $breakpoint == max450 {
-    @media (max-width: 450px) {
-      @content;
+    @if $breakpoint==max450 {
+        @media (max-width: 450px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower600-max450 {
-    @media (max-width: 600px) {
-      @content;
+    @if $breakpoint==lower600-max450 {
+        @media (max-width: 600px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower900-max600 {
-    @media (max-width: 900px) {
-      @content;
+    @if $breakpoint==lower900-max600 {
+        @media (max-width: 900px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower1200-max900 {
-    @media (max-width: 1200px) {
-      @content;
+    @if $breakpoint==lower1200-max900 {
+        @media (max-width: 1200px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower1800-max1200 {
-    @media (max-width: 1800px) {
-      @content;
+    @if $breakpoint==lower1800-max1200 {
+        @media (max-width: 1800px) {
+            @content;
+        }
     }
-  }
 }
-.login{
-    float: right; 
+
+.login {
+    float: right;
     margin-top: 20px;
     position: relative;
     margin-right: 5%;
+    a {
+        background: transparent;
+        text-decoration: none;
+        font-weight: bold;
+        color: #000;
+       
 
-    a{
-    background: transparent;
-    text-decoration: none;
-    font-weight: bold;
-    color: #000;
+        svg{
+          float: left;
+           font-size: 22px;
+          margin-top: 3px;
+          margin-right: 5px;
+
+        }
+        b{
+            font-weight: bold;
+            float: left;
+            margin-top: 2px;
+        }  
+    }
+
+    @include respond(max450) {
+      margin-right: 0;
     }
 }
+
 .header {
- float: left;
- position: relative;
- width: 100%;
- 
-      span{
+    float: left;
+    position: relative;
+    width: 100%;
+    span {
         float: right;
         position: relative;
         margin-right: 5%;
         margin-top: -48px;
-        a{
+
+            @include respond(max450) {
+                float: left;
+                margin-top: 10px;
+
+            }
+
+        a {
             float: right;
             background: #f02e25;
             color: #fff;
             text-decoration: none;
             font-weight: bold;
-
-        @include respond(lower900-max600) {
-         float: left;
-          margin-top: 0;
-        }
+            @include respond(lower900-max600) {
+                float: left;
+                margin-top: 0;
+            }
         }
     }
-
- ul{
-     position: relative;
-     width: 90%;
-     margin-left: 5%;
-     padding: 0;
-     float: left;
-     list-style-type: none;
-     height: auto;
-     margin-top: 20px;
-
-     @include respond(lower900-max600) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-     }
-    
-     li{
-         float: left;
-         display: block;
-        a{
-            float: left;
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 12px;
-            background-color: black;
-            margin-right: 10px;
-            font-weight: bold;
-
-            @include respond(lower900-max600) {
-               margin-right: 0;
-               margin-bottom: 10px;
-            }
-
-         @include respond(lower900-max600) {
-            padding: 5px 10px;
-           }
+    ul {
+        position: relative;
+        width: 90%;
+        margin-left: 5%;
+        padding: 0;
+        float: left;
+        list-style-type: none;
+        height: auto;
+        margin-top: 20px;
+        @include respond(lower900-max600) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
-      }
-  }
+        @include respond(max450) {
+            justify-content: flex-start;
+            margin-left: 0;
+        }
+        li {
+            float: left;
+            display: block;
+            a {
+                float: left;
+                color: #fff;
+                text-decoration: none;
+                padding: 5px 12px;
+                background-color: black;
+                margin-right: 10px;
+                font-weight: bold;
 
+                &:hover{
+                  background-color: #f02e25;
+                }
+
+                @include respond(lower900-max600) {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+                @include respond(lower900-max600) {
+                    padding: 5px 10px;
+                }
+                @include respond(max450) {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
 }

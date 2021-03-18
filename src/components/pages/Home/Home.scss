@@ -57,6 +57,7 @@
         /* background: orange;*/
     }
     @include respond(lower900-max600) {
+        margin-left: 0;
          width: 430px;
         /* background: green;*/
     }
@@ -64,12 +65,15 @@
         /* background: red;*/
     }
     @include respond(max450) {
-        /* background: brown;*/
+          width: 300px;
     }
 }
 .home-page-in{
    position: relative;
    padding-left: 5%;
+   @include respond(max450) {
+      padding-left: 0;
+    }
 }
 .redbutton{
     float: left;

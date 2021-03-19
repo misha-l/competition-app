@@ -13,7 +13,7 @@ const Header = () => {
         <li><a href="/Judges">Жури</a></li>
         <li><a href="/Gallery">Галерия</a></li>
         <li><a href="#">Финалисти</a></li>
-        <li><a href="#">Правила</a></li>
+        <li><a href="/Pravila">Правила</a></li>
       </ul>
       
       <span><a href="">Изпрати Рисунка</a></span>

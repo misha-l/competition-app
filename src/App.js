@@ -4,7 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Demo from "./components/Demo/Demo";
 import Gallery from "./components/pages/Gallery/Gallery";
 import Judges from "./components/pages/Judges/Judges";
-import Page2 from "./components/pages/Page2/Page2";
+import Pravila from "./components/pages/Pravila/Pravila";
 import Home from "./components/pages/Home/Home";
 import { BrowserRouter, Route } from "react-router-dom";
 import logo from "./images/logo.png";
@@ -32,7 +32,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/Gallery" component={Gallery} />
           <Route path="/Judges" component={Judges} />
-          <Route path="/page2" component={Page2} />
+          <Route path="/Pravila" component={Pravila} />
         </BrowserRouter>
       </div>
       <Footer />

@@ -1,0 +1,30 @@
+.searchbar{
+    float: right;
+    box-sizing: border-box;
+}
+.searchbar form input{
+float: left;
+margin: 0;
+padding: 0;
+line-height: 19px;
+padding-left: 15px;
+}
+.searchbar input[type=text] {
+  padding: 6px;
+  padding-left: 10px;
+  font-size: 14px;
+
+}
+.searchbar button {
+    float: left;
+  padding: 7px 10px 3px 10px;
+  background: #000;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+
+  svg{
+      color: #fff;
+       height: 20px;
+  }
+}

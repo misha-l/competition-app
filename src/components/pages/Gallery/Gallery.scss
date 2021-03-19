@@ -31,6 +31,13 @@
     margin-left: 20px;
     margin-top: 30px;
     width: 1410px;
+
+    div:nth-child(odd) {
+        @include respond(lower1200-max900) {
+        margin-right: 0;
+        }
+                
+    }
     @include respond(lower1800-max1200) {
         width: 1010px;
         margin-left: 20px;
@@ -40,11 +47,13 @@
         width: 710px;
         margin-left: 20px;
         /* background: orange;*/
+
     }
     @include respond(lower900-max600) {
         width: 410px;
         margin-left: 20px;
         /* background: green;*/
+
     }
     @include respond(lower600-max450) {
         /* background: red;*/
@@ -90,9 +99,7 @@
             width: 330px;
             height: 330px;
             margin-right: 30px;
-            &:nth-child(even) {
-                margin-right: 0;
-            }
+  
         }
         @include respond(lower900-max600) {
             width: 410px;

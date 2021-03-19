@@ -30,7 +30,6 @@
     float: right;
     margin-top: 20px;
     position: relative;
-    margin-right: 5%;
     a {
         background: transparent;
         text-decoration: none;
@@ -64,7 +63,7 @@
     span {
         float: right;
         position: relative;
-        margin-right: 5%;
+
         margin-top: -48px;
 
             @include respond(lower900-max600) {

@@ -1,9 +1,16 @@
 import React from "react";
 import "./Gallery.scss";
+import Pagination from "../../Pagination/Pagination";
+import SearchBar from "../../SearchBar/SearchBar";
 
 const Gallery = () => {
   return (
     <div class="gallery">
+        <SearchBar />
+        <br />
+        <br />
+        <Pagination />
+        <br />
       <div className="gallery-item">
         <div className="gallery-item__pic">
           <img src={`${process.env.PUBLIC_URL}/assets/images/pic1.jpeg`} />
@@ -59,6 +66,11 @@ const Gallery = () => {
         </div>
         </div>
       </div>
+
+
+              <br />
+        <Pagination />
+        <br />
     </div>
   );
 };

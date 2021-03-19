@@ -57,21 +57,22 @@
         /* background: orange;*/
     }
     @include respond(lower900-max600) {
-        margin-left: 0;
-         width: 430px;
+        margin-left: 20px;
+         width: 560px;
         /* background: green;*/
     }
     @include respond(lower600-max450) {
-        /* background: red;*/
+         width: 390px;
     }
     @include respond(max450) {
+           margin-left: 0;
           width: 300px;
     }
 }
 .home-page-in{
    position: relative;
    padding-left: 5%;
-   @include respond(max450) {
+    @include respond(lower1200-max900) {
       padding-left: 0;
     }
 }

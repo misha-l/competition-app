@@ -67,10 +67,12 @@
         margin-right: 5%;
         margin-top: -48px;
 
+            @include respond(lower900-max600) {
+                margin-top: 0;
+            }
             @include respond(max450) {
                 float: left;
                 margin-top: 10px;
-
             }
 
         a {

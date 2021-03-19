@@ -1,0 +1,105 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == max450 {
+    @media (max-width: 450px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower600-max450 {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower900-max600 {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower1200-max900 {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower1800-max1200 {
+    @media (max-width: 1800px) {
+      @content;
+    }
+  }
+}
+
+.judges-page{
+    float: left;
+    width: 1430px;
+    margin-left: 170px;
+    text-align: left;
+    margin-bottom: 10px;
+
+    @include respond(lower1800-max1200) {
+         width: 1030px;
+        /* background-color: cyan; */
+    }
+    @include respond(lower1200-max900) {
+        width: 730px;
+        /* background: orange;*/
+    }
+    @include respond(lower900-max600) {
+        margin-left: 20px;
+         width: 560px;
+        /* background: green;*/
+    }
+    @include respond(lower600-max450) {
+         width: 390px;
+    }
+    @include respond(max450) {
+           margin-left: 0;
+          width: 300px;
+    }
+}
+
+.judge-profile{
+    float: left;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #999; 
+
+           @include respond(lower900-max600) {
+        text-align: center;
+        }
+  img{
+      float: left;
+      width: 220px;
+      height: 220px;
+      margin-right: 30px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      border-radius: 100%;
+
+        @include respond(lower900-max600) {
+        float: none;
+          margin-right: 0;
+        }
+  }
+  &--info{
+      float: left;
+      position: relative;
+      width: calc(100% - 250px);
+
+      @include respond(lower900-max600) {
+        width: 100%;
+        text-align: center;
+    }
+      h1{
+        margin-bottom: 0;
+        @include respond(lower900-max600) {
+           margin-top: 0;
+        }
+      }
+      h3{
+          margin-top: 10px;
+          margin-bottom: 10px;
+          color: #ff6c4e;
+          font-style: italic;
+      }
+  }
+
+}

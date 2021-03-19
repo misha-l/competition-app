@@ -1,0 +1,58 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == max450 {
+    @media (max-width: 450px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower600-max450 {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower900-max600 {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower1200-max900 {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lower1800-max1200 {
+    @media (max-width: 1800px) {
+      @content;
+    }
+  }
+}
+
+.pagecontainer{
+    float: left;
+    margin-left: 170px;
+    text-align: left;
+    width: 1430px;
+    margin-bottom: 50px;
+    background: pink;
+    
+
+    @include respond(lower1800-max1200) {
+         width: 1030px;
+        /* background-color: cyan; */
+    }
+    @include respond(lower1200-max900) {
+        width: 730px;
+        /* background: orange;*/
+    }
+    @include respond(lower900-max600) {
+        margin-left: 20px;
+         width: 560px;
+        /* background: green;*/
+    }
+    @include respond(lower600-max450) {
+         width: 390px;
+    }
+    @include respond(max450) {
+           margin-left: 0;
+          width: 300px;
+    }
+}

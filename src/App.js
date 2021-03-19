@@ -2,10 +2,11 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Demo from "./components/Demo/Demo";
+import Home from "./components/pages/Home/Home";
 import Gallery from "./components/pages/Gallery/Gallery";
 import Judges from "./components/pages/Judges/Judges";
 import Pravila from "./components/pages/Pravila/Pravila";
-import Home from "./components/pages/Home/Home";
+import Finalists from "./components/pages/Finalists/Finalists";
 import { BrowserRouter, Route } from "react-router-dom";
 import logo from "./images/logo.png";
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/Gallery" component={Gallery} />
           <Route path="/Judges" component={Judges} />
           <Route path="/Pravila" component={Pravila} />
+          <Route path="/Finalists" component={Finalists} />
         </BrowserRouter>
       </div>
       <Footer />

@@ -5,10 +5,9 @@ import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 const Finalists = () => {
   return (
     <div>
-       aaa
-       <Pagecontainer>
-       bbbb
-       </Pagecontainer>
+      <Pagecontainer>
+        <br />
+      </Pagecontainer>
     </div>
   );
 };

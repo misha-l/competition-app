@@ -1,0 +1,98 @@
+        @mixin respond($breakpoint) {
+            @if $breakpoint==max450 {
+                @media (max-width: 450px) {
+                    @content;
+                }
+            }
+            @if $breakpoint==lower600-max450 {
+                @media (max-width: 600px) {
+                    @content;
+                }
+            }
+            @if $breakpoint==lower900-max600 {
+                @media (max-width: 900px) {
+                    @content;
+                }
+            }
+            @if $breakpoint==lower1200-max900 {
+                @media (max-width: 1200px) {
+                    @content;
+                }
+            }
+            @if $breakpoint==lower1800-max1200 {
+                @media (max-width: 1800px) {
+                    @content;
+                }
+            }
+        }
+        
+        .loginform {
+            float: left;
+            width: 900px;
+            border: 3px solid #000;
+            margin-left: 50px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-direction: row;
+            @include respond(lower600-max450) {
+                flex-direction: column;
+            }
+            &__main {
+                width: 60%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                border-right: 1px solid #666;
+                @include respond(lower600-max450) {
+                    width: 100%;
+                }
+                svg {
+                    font-size: 60px;
+                }
+                span {
+                    padding-top: 10px;
+                    padding-bottom: 18px;
+                    font-weight: bold;
+                }
+                a {
+                    margin-top: 20px;
+                    color: #000;
+                    text-decoration: none;
+                    i {
+                        color: #f02e25;
+                        font-style: normal;
+                        border-bottom: 1px solid #f02e25;
+                    }
+                }
+
+                div.login-bottom-links{
+                    margin-top: 15px;
+                }
+            }
+            &__fg {
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include respond(lower600-max450) {
+                margin-top: 10px;
+                width: 100%;
+            }
+            }
+            @include respond(lower1200-max900) {
+                margin-left: 35px;
+                width: 670px;
+            }
+            @include respond(lower900-max600) {
+                margin-left: 0;
+                width: 555px;
+            }
+            @include respond(lower600-max450) {
+                width: 385px;
+            }
+            @include respond(max450) {
+                width: 300px;
+            }
+        }

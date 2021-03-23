@@ -1,86 +1,66 @@
 @mixin respond($breakpoint) {
-  @if $breakpoint == max450 {
-    @media (max-width: 450px) {
-      @content;
+    @if $breakpoint==max450 {
+        @media (max-width: 450px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower600-max450 {
-    @media (max-width: 600px) {
-      @content;
+    @if $breakpoint==lower600-max450 {
+        @media (max-width: 600px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower900-max600 {
-    @media (max-width: 900px) {
-      @content;
+    @if $breakpoint==lower900-max600 {
+        @media (max-width: 900px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower1200-max900 {
-    @media (max-width: 1200px) {
-      @content;
+    @if $breakpoint==lower1200-max900 {
+        @media (max-width: 1200px) {
+            @content;
+        }
     }
-  }
-  @if $breakpoint == lower1800-max1200 {
-    @media (max-width: 1800px) {
-      @content;
+    @if $breakpoint==lower1800-max1200 {
+        @media (max-width: 1800px) {
+            @content;
+        }
     }
-  }
 }
 
-.home-page{
+.home-page {
     float: left;
-    margin-left: 170px;
-    text-align: left;
-    width: 1430px;
     margin-bottom: 50px;
-    
-     h1{
+    h1 {
         color: #f02e25;
-     }
-
-     h2{
-         float: left;
-         width: 100%;
-         margin-top: -20px !important;
-         color: #ffb954;
-          
-        i{
+    }
+    h2 {
+        float: left;
+        width: 100%;
+        margin-top: -20px !important;
+        color: #ffb954;
+        i {
             color: #000000;
         }
-     }
+    }
+}
 
-    @include respond(lower1800-max1200) {
-         width: 1030px;
-        /* background-color: cyan; */
-    }
+.home-page-in {
+    position: relative;
+    padding-left: 5%;
     @include respond(lower1200-max900) {
-        width: 730px;
-        /* background: orange;*/
-    }
-    @include respond(lower900-max600) {
-        margin-left: 20px;
-         width: 560px;
-        /* background: green;*/
-    }
-    @include respond(lower600-max450) {
-         width: 390px;
-    }
-    @include respond(max450) {
-           margin-left: 0;
-          width: 300px;
+        padding-left: 0;
     }
 }
-.home-page-in{
-   position: relative;
-   padding-left: 5%;
-    @include respond(lower1200-max900) {
-      padding-left: 0;
-    }
-}
-.redbutton{
+
+.redbutton {
     float: left;
     background: #f02e25;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
     margin-top: 20px;
+    padding: 6px 12px;
+}
+
+.home-page .pagecontainer {
+    text-align: left;
 }

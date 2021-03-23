@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./Header.scss";
 import { FaRegUserCircle } from "react-icons/fa";
 
@@ -39,6 +41,7 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
+    console.log(window.location.pathname);
     const selectedLinks = this.state.links.map((link) =>
       link.url === window.location.pathname ? { ...link, selected: true } : link
     );
@@ -49,23 +52,42 @@ class Header extends React.Component {
     const linksHtml = this.state.links.map((link) => {
       return (
         <li key={link.url}>
-          <a href={link.url} className={link.selected ? "selected" : ""}>
+          <Link to={link.url} className={link.selected ? "selected" : ""}>
             {link.caption} {link.selected}
-          </a>
+          </Link>
         </li>
       );
     });
     return <ul>{linksHtml}</ul>;
   }
 
+  renderUserLinks() {
+    if (this.props.authenticated) {
+      return (
+        <div>
+          <Link to="/signout">Sign Out</Link>
+          {/* <Link to="/restricted">Resitricted</Link>*/}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Link to="/signup">Регистрация</Link>
+          <b>&nbsp;/&nbsp;</b>
+          <Link to="/signin">Вход</Link>
+        </div>
+      );
+    }
+  }
+
   render() {
+    console.log("Header-props", this.props);
     return (
       <div className="header">
         <div className="login">
-          <a href="/sdfsdfsfd">
-            <FaRegUserCircle />
-            <b>Вход</b>
-          </a>
+          {this.renderUserLinks()}
+
+          <FaRegUserCircle />
         </div>
         {this.renderlHeaderLinks()}
         <span>
@@ -76,4 +98,8 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return { authenticated: state.auth.authenticated };
+}
+
+export default connect(mapStateToProps)(Header);

@@ -27,25 +27,33 @@
 }
 
 .login {
-    float: right;
+    float: left;
+    text-align: right;
+    width: 100%;
     margin-top: 20px;
     position: relative;
+    b {
+        float: right;
+    }
+    svg {
+        float: right;
+        font-size: 22px;
+        padding-top: 3px;
+        margin-right: 5px;
+    }
     a {
+        float: right;
         background: transparent;
         text-decoration: none;
         font-weight: bold;
         color: #000;
-        svg {
-            float: left;
-            font-size: 22px;
-            margin-top: 3px;
-            margin-right: 5px;
-        }
         b {
             font-weight: bold;
-            float: left;
             margin-top: 2px;
         }
+    }
+    @include respond(lower900-max600) {
+        margin-right: 20px;
     }
     @include respond(max450) {
         margin-right: 0;
@@ -62,6 +70,8 @@
         margin-top: -48px;
         @include respond(lower900-max600) {
             margin-top: 0;
+            margin-right: 20px;
+            margin-bottom: 20px;
         }
         @include respond(max450) {
             float: left;
@@ -69,6 +79,7 @@
         }
         a {
             float: right;
+            padding: 6px 12px;
             background: #f02e25;
             color: #fff;
             text-decoration: none;

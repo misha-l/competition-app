@@ -4,7 +4,7 @@ import "./Pagination.scss";
 const Pagination = () => {
   return (
     <div className="pagination">
-      <a href="/todo" class="arrow">
+      <a className="arrow" href="/todo">
         &#x276E;
       </a>
       <a href="/todo">1</a>

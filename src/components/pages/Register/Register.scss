@@ -76,6 +76,10 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                p{
+                    text-align: center;
+                }
+
                 @include respond(lower600-max450) {
                 margin-top: 10px;
                 width: 100%;

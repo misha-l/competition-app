@@ -5,7 +5,7 @@ import App from "./App";
 // import reportWebVitals from './reportWebVitals';
 
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware } from "redux";
 // import devToolsEnhancer from "remote-redux-devtools";
 import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
@@ -20,11 +20,9 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
       <App />
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
   document.getElementById("root")
 );
 

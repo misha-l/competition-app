@@ -6,7 +6,19 @@ import Signin from "../../auth/Signin";
 import { FaRegUserCircle } from "react-icons/fa";
 
 
-const Login = () => {
+class Login extends React.Component { 
+
+  componentDidMount () {
+    console.log("Login props:", this.props);
+  }
+  
+  componentDidUpdate () {
+    console.log("Login updated");
+    console.log("Login props:", this.props);
+  }
+
+  render () {
+  
   return (
     <Pagecontainer>
       <div className="loginform">
@@ -16,7 +28,7 @@ const Login = () => {
 
           <Signin />
           <div className="login-bottom-links">
-          <a href="/signup">
+          <a href="/Register">
             <b>регистрация</b>
           </a>
           <b>&nbsp;/&nbsp;</b>
@@ -26,11 +38,13 @@ const Login = () => {
           </div>
         </div>
         <div className="loginform__fg">
-          <p>или влезте с:</p>
+          <p>ако искате<br />само да харесате рисунка<br />може да влезте с:</p>
         </div>
       </div>
     </Pagecontainer>
   );
-};
+  }
+
+}
 
 export default Login;

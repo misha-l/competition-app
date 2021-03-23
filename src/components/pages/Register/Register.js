@@ -2,7 +2,7 @@ import React from "react";
 import "./Register.scss";
 import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 // import LoginForm from "../../LoginForm/LoginForm";
-import Signout from "../../auth/Signout";
+import Signup from "../../auth/Signup";
 import { FaRegUserCircle } from "react-icons/fa";
 
 
@@ -12,11 +12,11 @@ const Register = () => {
       <div className="loginform">
         <div className="loginform__main">
           <FaRegUserCircle />
-          <span>Регистрация:</span>
+          <span>РЕГИСТРАЦИЯ:</span>
 
-          <Signout />
+          <Signup />
           <div className="login-bottom-links">
-          <a href="/signin">
+          <a href="/Login">
             <b>вход</b>
           </a>
           <b>&nbsp;/&nbsp;</b>
@@ -26,7 +26,7 @@ const Register = () => {
           </div>
         </div>
         <div className="loginform__fg">
-          <p>или влезте с:</p>
+                    <p>ако искате<br />само да харесате рисунка<br />може да влезте с:</p>
         </div>
       </div>
     </Pagecontainer>

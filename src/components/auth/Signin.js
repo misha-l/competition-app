@@ -6,8 +6,14 @@ import * as actions from "../../actions";
 import "./auth.scss";
 
 class Signin extends Component {
+
+  componentDidUpdate () {
+    console.log("Signin updated");
+  }
+
   onSubmit = (formProps) => {
     this.props.signin(formProps, () => {
+      console.log("Signin props:", this.props);
       this.props.history.push("/Gallery");
     });
   };

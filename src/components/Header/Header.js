@@ -72,9 +72,9 @@ class Header extends React.Component {
     } else {
       return (
         <div>
-          <Link to="/signup">Регистрация</Link>
+          <Link to="/Register">Регистрация</Link>
           <b>&nbsp;/&nbsp;</b>
-          <Link to="/signin">Вход</Link>
+          <Link to="/Login">Вход</Link>
         </div>
       );
     }

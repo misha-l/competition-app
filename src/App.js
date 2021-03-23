@@ -15,6 +15,8 @@ import Signup from "./components/auth/Signup";
 import Signin from "./components/auth/Signin";
 import Signout from "./components/auth/Signout";
 import Restricted from "./components/pages/Restricted";
+import Drawingpage from "./components/pages/Drawingpage/Drawingpage";
+
 
 import logo from "./images/logo.png";
 
@@ -43,15 +45,17 @@ function App() {
           <Route path="/Judges" component={Judges} />
           <Route path="/Pravila" component={Pravila} />
           <Route path="/Finalists" component={Finalists} />
-          <Route path="/Login" component={Login} />
+          <Route path="/Login" component={Login} testProp="fromroute" />
           <Route path="/Register" component={Register} />
           
 
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
+          <Route path="/signout" component={Signout} />
 
           <Route path="/restricted" component={Restricted} />
-          <Route path="/signout" component={Signout} />
+          <Route path="/drawingpage" component={Drawingpage} />
+
         </BrowserRouter>
       </div>
       <Footer />

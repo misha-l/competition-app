@@ -141,8 +141,14 @@
                     color: #f02e25;
                     font-size: 18px;
                     b {
+                        float: left;
                         font-weight: bold;
-                        font-size: 22px;
+                        font-size: 27px;
+                    }
+                    i{
+                        float: left;
+                        font-size: 23px;
+                        font-style: normal;    
                     }
                 }
             }

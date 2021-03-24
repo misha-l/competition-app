@@ -91,7 +91,7 @@ class Header extends React.Component {
         </div>
         {this.renderlHeaderLinks()}
         <span>
-          <a href="/sdfswrwsdfsdf">Изпрати Рисунка</a>
+          <a href="/submit-drawing">Изпрати Рисунка</a>
         </span>
       </div>
     );

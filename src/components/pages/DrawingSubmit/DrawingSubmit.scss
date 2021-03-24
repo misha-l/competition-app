@@ -1,0 +1,121 @@
+@mixin respond($breakpoint) {
+    @if $breakpoint==max450 {
+        @media (max-width: 450px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower600-max450 {
+        @media (max-width: 600px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower900-max600 {
+        @media (max-width: 900px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower1200-max900 {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lower1800-max1200 {
+        @media (max-width: 1800px) {
+            @content;
+        }
+    }
+}
+
+.drawingSendForm {
+    float: left;
+    width: 900px;
+    border: 3px solid #000;
+    margin-left: 50px;
+    text-align: center;
+    input.submmitbutton {
+        margin-top: 10px;
+    }
+    form {
+        padding: 0 50px 40px 50px;
+        div {
+            float: left;
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            label {
+                float: left;
+                text-align: right;
+                padding-right: 12px;
+                width: 40%;
+                @include respond(lower900-max600) {
+                    width: 30%;
+                }
+                @include respond(lower600-max450) {
+                    width: 100%;
+                    text-align: left;
+                }
+            }
+            input {
+                float: left;
+                line-height: 24px;
+                @include respond(lower600-max450) {
+                    width: 100%;
+                    text-align: left;
+                    margin-top: 4px;
+                }
+            }
+            textarea {
+                float: left;
+                @include respond(lower600-max450) {
+                    width: 100%;
+                    text-align: left;
+                    margin-top: 4px;
+                }
+            }
+        }
+    }
+    @include respond(lower1200-max900) {
+        margin-left: 35px;
+        width: 670px;
+    }
+    @include respond(lower900-max600) {
+        margin-left: 0;
+        width: 555px;
+    }
+    @include respond(lower600-max450) {
+        width: 385px;
+        div.age {
+            width: 100px;
+            input {
+                width: 70px;
+            }
+        }
+        div.place {
+            width: 180px;
+        }
+    }
+    @include respond(max450) {
+        width: 300px;
+        div.age {
+            width: 70px;
+            input {
+                width: 50px;
+            }
+        }
+        div.place {
+            width: 130px;
+        }
+    }
+    div.author input {
+        width: 300px !important;
+        @include respond(lower900-max600) {
+            width: 250px !important;
+        }
+        @include respond(lower600-max450) {
+            width: 280px !important;
+        }
+        @include respond(max450) {
+            width: 200px !important;
+        }
+    }
+}

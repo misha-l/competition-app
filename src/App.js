@@ -16,7 +16,7 @@ import Signin from "./components/auth/Signin";
 import Signout from "./components/auth/Signout";
 import Restricted from "./components/pages/Restricted";
 import Drawingpage from "./components/pages/Drawingpage/Drawingpage";
-
+import DrawingSubmit from "./components/pages/DrawingSubmit/DrawingSubmit";
 
 import logo from "./images/logo.png";
 
@@ -55,6 +55,7 @@ function App() {
 
           <Route path="/restricted" component={Restricted} />
           <Route path="/drawingpage" component={Drawingpage} />
+          <Route path="/submit-drawing" component={DrawingSubmit} />
 
         </BrowserRouter>
       </div>

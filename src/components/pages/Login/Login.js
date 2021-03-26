@@ -1,50 +1,76 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Login.scss";
 import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 // import LoginForm from "../../LoginForm/LoginForm";
 import Signin from "../../auth/Signin";
 import { FaRegUserCircle } from "react-icons/fa";
 
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    /* where to redirect after succesful login */
+    let redirectTo = "/";
+    if (props && props.location && props.location.redirectTo) {
+      redirectTo = props.location.redirectTo;
+    } else if (props && props.redirectTo) {
+      redirectTo = props.redirectTo;
+    }
 
-class Login extends React.Component { 
-
-  componentDidMount () {
-    console.log("Login props:", this.props);
+    this.state = {
+      redirectTo: redirectTo,
+    };
   }
-  
-  componentDidUpdate () {
-    console.log("Login updated");
-    console.log("Login props:", this.props);
+
+  componentDidMount() {
+    console.log("Login props: ", this.props);
+    console.log("Login state: ", this.state);
   }
 
-  render () {
-  
-  return (
-    <Pagecontainer>
-      <div className="loginform">
-        <div className="loginform__main">
-          <FaRegUserCircle />
-          <span>ВХОД</span>
+  onLoginRedirect = () => {
+    console.log("Will redirect to: ", this.state.redirectTo);
+    this.props.history.push(this.state.redirectTo);
+  };
 
-          <Signin />
-          <div className="login-bottom-links">
-          <a href="/Register">
-            <b>регистрация</b>
-          </a>
-          <b>&nbsp;/&nbsp;</b>
-          <a href="/todo">
-            <i>забравена парола</i>
-          </a>
+  render() {
+    return (
+      <Pagecontainer>
+        <div className="loginform">
+          <div className="loginform__main">
+            <FaRegUserCircle />
+            <span>ВХОД</span>
+
+            <Signin onSuccessfulLogin={this.onLoginRedirect} />
+            <div className="login-bottom-links">
+              <Link
+                to={{
+                  pathname: "/register",
+                  redirectTo: this.state.redirectTo,
+                }}
+              >
+                {" "}
+                <b>регистрация</b>{" "}
+              </Link>
+
+              <b>&nbsp;/&nbsp;</b>
+              <a href="/todo">
+                <i>забравена парола</i>
+              </a>
+            </div>
+          </div>
+          <div className="loginform__fg">
+            <p>
+              ако искате
+              <br />
+              само да харесате рисунка
+              <br />
+              може да влезте с:
+            </p>
           </div>
         </div>
-        <div className="loginform__fg">
-          <p>ако искате<br />само да харесате рисунка<br />може да влезте с:</p>
-        </div>
-      </div>
-    </Pagecontainer>
-  );
+      </Pagecontainer>
+    );
   }
-
 }
 
 export default Login;

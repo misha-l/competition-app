@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import React, { Component } from "react";
+import { reduxForm, Field } from "redux-form";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
 class Signup extends Component {
-  onSubmit = formProps => {
+  onSubmit = (formProps) => {
     this.props.signup(formProps, () => {
-      this.props.history.push('/Gallery');
+      if (this.props.onSuccessfulLogin) {
+        this.props.onSuccessfulLogin();
+      } else if (this.props && this.props.history) {
+        this.props.history.push("/");
+      }
     });
   };
 
   render() {
     const { handleSubmit } = this.props;
-        
+
     return (
       <form onSubmit={handleSubmit(this.onSubmit)} className="login-form">
         <div className="login-component">
-          <label>Имейл:</label>
+          <label>Email</label>
           <Field
             name="email"
             type="text"
@@ -26,7 +30,7 @@ class Signup extends Component {
           />
         </div>
         <div className="login-component">
-          <label>Парола:</label>
+          <label>Password</label>
           <Field
             name="password"
             type="password"
@@ -47,5 +51,5 @@ function mapStateToProps(state) {
 
 export default compose(
   connect(mapStateToProps, actions),
-  reduxForm({ form: 'signup' })
+  reduxForm({ form: "signup" })
 )(Signup);

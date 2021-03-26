@@ -18,22 +18,22 @@ class Header extends React.Component {
         selected: false,
       },
       {
-        url: "/Judges",
+        url: "/judges",
         caption: "Жури",
         selected: false,
       },
       {
-        url: "/Gallery",
+        url: "/gallery",
         caption: "Галерия",
         selected: false,
       },
       {
-        url: "/Finalists",
+        url: "/finalists",
         caption: "Финалисти",
         selected: false,
       },
       {
-        url: "/Pravila",
+        url: "/pravila",
         caption: "Правила",
         selected: false,
       },
@@ -72,9 +72,9 @@ class Header extends React.Component {
     } else {
       return (
         <div>
-          <Link to="/Register">Регистрация</Link>
+          <Link to="/register">Регистрация</Link>
           <b>&nbsp;/&nbsp;</b>
-          <Link to="/Login">Вход</Link>
+          <Link to="/login">Вход</Link>
         </div>
       );
     }

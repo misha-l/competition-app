@@ -42,7 +42,7 @@ const Home = () => {
           </b>
         </p>
         <p>Успех на всички участници</p>
-        <a href="/todo" className="redbutton">
+        <a href="/finalists" className="redbutton">
           Гласувай за нашите финалисти
         </a>
       </Pagecontainer>

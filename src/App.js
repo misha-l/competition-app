@@ -15,8 +15,11 @@ import Signup from "./components/auth/Signup";
 import Signin from "./components/auth/Signin";
 import Signout from "./components/auth/Signout";
 import Restricted from "./components/pages/Restricted";
-import Drawingpage from "./components/pages/Drawingpage/Drawingpage";
+// import Drawingpage from "./components/pages/Drawingpage/Drawingpage";
 import DrawingSubmit from "./components/pages/DrawingSubmit/DrawingSubmit";
+import SubmissionDetails from "./components/submissions/SubmissionDetails/SubmissionDetails";
+
+import Test from "./components/Test";
 
 import logo from "./images/logo.png";
 
@@ -41,22 +44,25 @@ function App() {
             <Header />
           </div>
           <Route path="/" exact component={Home} />
-          <Route path="/Gallery" component={Gallery} />
-          <Route path="/Judges" component={Judges} />
-          <Route path="/Pravila" component={Pravila} />
-          <Route path="/Finalists" component={Finalists} />
-          <Route path="/Login" component={Login} testProp="fromroute" />
-          <Route path="/Register" component={Register} />
-          
-
+          <Route path="/gallery" component={Gallery} />
+          <Route path="/judges" component={Judges} />
+          <Route path="/pravila" component={Pravila} />
+          <Route path="/finalists" component={Finalists} />
+          <Route
+            path="/Login"
+            render={(props) => <Login {...props} redirectTo="/Gallery" />}
+          />
+          <Route path="/register" component={Register} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
           <Route path="/signout" component={Signout} />
-
-          <Route path="/restricted" component={Restricted} />
-          <Route path="/drawingpage" component={Drawingpage} />
+          <Route
+            path="/restricted"
+            render={(props) => <Restricted {...props} />}
+          />
+          <Route path="/drawing/:submissionId" component={SubmissionDetails} />
           <Route path="/submit-drawing" component={DrawingSubmit} />
-
+          <Route path="/test" component={Test} />
         </BrowserRouter>
       </div>
       <Footer />

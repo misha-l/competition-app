@@ -1,36 +1,76 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Register.scss";
 import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 // import LoginForm from "../../LoginForm/LoginForm";
 import Signup from "../../auth/Signup";
 import { FaRegUserCircle } from "react-icons/fa";
 
+class Register extends React.Component {
+  constructor(props) {
+    super(props);
+    /* where to redirect after succesful login */
+    let redirectTo = "/";
+    if (props && props.location && props.location.redirectTo) {
+      redirectTo = props.location.redirectTo;
+    } else if (props && props.redirectTo) {
+      redirectTo = props.redirectTo;
+    }
 
-const Register = () => {
-  return (
-    <Pagecontainer>
-      <div className="loginform">
-        <div className="loginform__main">
-          <FaRegUserCircle />
-          <span>РЕГИСТРАЦИЯ:</span>
+    this.state = {
+      redirectTo: redirectTo,
+    };
+  }
 
-          <Signup />
-          <div className="login-bottom-links">
-          <a href="/Login">
-            <b>вход</b>
-          </a>
-          <b>&nbsp;/&nbsp;</b>
-          <a href="/todo">
-            <i>забравена парола</i>
-          </a>
+  componentDidMount() {
+    console.log("Register props: ", this.props);
+    console.log("Register state: ", this.state);
+  }
+
+  onLoginRedirect = () => {
+    console.log("Will redirect to: ", this.state.redirectTo);
+    this.props.history.push(this.state.redirectTo);
+  };
+
+  render() {
+    return (
+      <Pagecontainer>
+        <div className="loginform">
+          <div className="loginform__main">
+            <FaRegUserCircle />
+            <span>РЕГИСТРАЦИЯ</span>
+
+            <Signup onSuccessfulLogin={this.onLoginRedirect} />
+            <div className="login-bottom-links">
+              <Link
+                to={{
+                  pathname: "/login",
+                  redirectTo: this.state.redirectTo,
+                }}
+              >
+                {" "}
+                <b>вход</b>{" "}
+              </Link>
+
+              <b>&nbsp;/&nbsp;</b>
+              <a href="/todo">
+                <i>забравена парола</i>
+              </a>
+            </div>
+          </div>
+          <div className="loginform__fg">
+            <p>
+              ако искате
+              <br />
+              само да харесате рисунка
+              <br />
+              може да влезте с:
+            </p>
           </div>
         </div>
-        <div className="loginform__fg">
-                    <p>ако искате<br />само да харесате рисунка<br />може да влезте с:</p>
-        </div>
-      </div>
-    </Pagecontainer>
-  );
-};
+      </Pagecontainer>
+    );
+  }
+}
 
 export default Register;

@@ -25,6 +25,18 @@ class SubmissionDetails extends React.Component {
     console.log("details", this.state.submissionData);
   }
 
+  deleteSubmission = async (event) => {
+    event.preventDefault();
+
+    const response = await axios.delete(
+      "http://localhost:3090/submissions/" + this.state.submissionId
+    );
+
+    console.log("DELETED-submission", response);
+
+    this.props.history.push("/gallery");
+  };
+
   render() {
     return (
       <Pagecontainer>
@@ -42,7 +54,9 @@ class SubmissionDetails extends React.Component {
                 <a href="/todo">ХАРЕСАЙ</a>
               </div>
               <span>
-                <a href="/todo">ИЗТРИЙ</a>
+                <a href="/todo" onClick={this.deleteSubmission}>
+                  ИЗТРИЙ
+                </a>
               </span>
             </div>
           </div>

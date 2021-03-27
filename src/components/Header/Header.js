@@ -65,8 +65,9 @@ class Header extends React.Component {
     if (this.props.authenticated) {
       return (
         <div>
-          <Link to="/signout">Sign Out</Link>
-          {/* <Link to="/restricted">Resitricted</Link>*/}
+          <Link to="/signout">Изход</Link>
+          <b>&nbsp;/&nbsp;</b>
+          <Link to="/todo">Профил</Link>
         </div>
       );
     } else {

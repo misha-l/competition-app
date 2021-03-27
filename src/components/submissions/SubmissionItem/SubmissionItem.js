@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { HiHeart } from "react-icons/hi";
 import { HiOutlineHeart } from "react-icons/hi";
 
@@ -9,14 +10,34 @@ class SubmissionItem extends React.Component {
   }
 
   render() {
-    const { _id, authorName, image } = this.props.item;
+    const {
+      _id,
+      authorName,
+      authorAge,
+      authorPlace,
+      image,
+      description,
+      likes,
+    } = this.props.item;
 
     return (
       <div className="gallery-item">
         <div className="gallery-item__pic">
-          <a href={`/drawing/${_id}`}>
+          <Link
+            to={{
+              pathname: `/drawing/${_id}`,
+              submissionData: {
+                authorName,
+                authorAge,
+                authorPlace,
+                image,
+                description,
+                likes,
+              },
+            }}
+          >
             <img src={image} alt="Рисунка" />
-          </a>
+          </Link>
         </div>
         <div className="gallery-item__info">
           <div className="gallery-item__info-author">

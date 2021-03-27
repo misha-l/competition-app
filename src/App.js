@@ -60,8 +60,10 @@ function App() {
             path="/restricted"
             render={(props) => <Restricted {...props} />}
           />
-          <Route path="/drawing/:submissionId" component={SubmissionDetails} />
-          <Route path="/submit-drawing" component={DrawingSubmit} />
+          <Route
+            path="/drawing/:submissionId"
+            render={(props) => <SubmissionDetails {...props} />}
+          />
           <Route path="/test" component={Test} />
         </BrowserRouter>
       </div>

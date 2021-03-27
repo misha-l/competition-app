@@ -10,19 +10,22 @@ import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 class SubmissionDetails extends React.Component {
   constructor(props) {
     super(props);
+    console.log("SubmissionDetails-props", props);
     this.state = {
       submissionId: this.props.match.params.submissionId,
-      submissionData: {},
+      submissionData: { likes: [] },
     };
   }
 
   async componentDidMount() {
-    const response = await axios.get(
-      "http://localhost:3090/submissions/" + this.state.submissionId
-    );
-    this.setState({ submissionData: response.data });
-
-    console.log("details", this.state.submissionData);
+    if (this.props.location && this.props.location.submissionData) {
+      this.setState({ submissionData: this.props.location.submissionData });
+    } else {
+      const response = await axios.get(
+        "http://localhost:3090/submissions/" + this.state.submissionId
+      );
+      this.setState({ submissionData: response.data });
+    }
   }
 
   deleteSubmission = async (event) => {
@@ -31,8 +34,6 @@ class SubmissionDetails extends React.Component {
     const response = await axios.delete(
       "http://localhost:3090/submissions/" + this.state.submissionId
     );
-
-    console.log("DELETED-submission", response);
 
     this.props.history.push("/gallery");
   };
@@ -47,7 +48,7 @@ class SubmissionDetails extends React.Component {
             </div>
             <div className="drawing-container__main--like-delete">
               <div>
-                <i>3</i>
+                <i>{this.state.submissionData.likes.length}</i>
                 <b>
                   <HiOutlineHeart />
                 </b>

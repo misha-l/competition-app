@@ -42,13 +42,12 @@ class Signin extends Component {
         <div>{this.props.errorMessage}</div>
         <button>вход</button>
       </form>
-
-
     );
   }
 }
 
 function mapStateToProps(state) {
+  console.log("Siging-redux-state", state);
   return { errorMessage: state.auth.errorMessage };
 }
 

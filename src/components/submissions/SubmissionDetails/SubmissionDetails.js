@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import api from "../../../api/api";
 import { HiHeart } from "react-icons/hi";
 import { HiOutlineHeart } from "react-icons/hi";
 import { IoLocationSharp } from "react-icons/io5";
@@ -19,23 +19,49 @@ class SubmissionDetails extends React.Component {
 
   async componentDidMount() {
     if (this.props.location && this.props.location.submissionData) {
+      console.log(
+        "We get submissionData as props",
+        this.props.location.submissionData
+      );
       this.setState({ submissionData: this.props.location.submissionData });
     } else {
-      const response = await axios.get(
-        "http://localhost:3090/submissions/" + this.state.submissionId
-      );
+      const response = await api.get("/submissions/" + this.state.submissionId);
+      console.log("We fetch submissionData via API", response.data);
       this.setState({ submissionData: response.data });
     }
+  }
+
+  /*
+  async componentDidUpdate() {
+    const response = await api.get("/submissions/" + this.state.submissionId);
+    console.log("Update submissionData via API", response.data);
+    this.setState({ submissionData: response.data });
+  }
+  */
+
+  setSubmissionDataFields(newValues) {
+    const newSubmissionData = { ...this.state.submissionData, ...newValues };
+    this.setState({ submissionData: newSubmissionData });
   }
 
   deleteSubmission = async (event) => {
     event.preventDefault();
 
-    const response = await axios.delete(
-      "http://localhost:3090/submissions/" + this.state.submissionId
+    const response = await api.delete(
+      "/submissions/" + this.state.submissionId
     );
 
     this.props.history.push("/gallery");
+  };
+
+  likeSubmission = async (event) => {
+    event.preventDefault();
+
+    console.log("submissionId", this.state.submissionId);
+    const response = await api.post(
+      "/submissions/likes/" + this.state.submissionId
+    );
+    this.setSubmissionDataFields(response.data);
   };
 
   render() {
@@ -52,7 +78,9 @@ class SubmissionDetails extends React.Component {
                 <b>
                   <HiOutlineHeart />
                 </b>
-                <a href="/todo">ХАРЕСАЙ</a>
+                <a href="/todo" onClick={this.likeSubmission}>
+                  ХАРЕСАЙ
+                </a>
               </div>
               <span>
                 <a href="/todo" onClick={this.deleteSubmission}>
@@ -71,6 +99,8 @@ class SubmissionDetails extends React.Component {
               &nbsp;{this.state.submissionData.authorPlace}
             </h3>
             <p>{this.state.submissionData.description}</p>
+            {this.state.submissionData.createdByUser ? " mine " : ""}
+            {this.state.submissionData.likedByUser ? " liked " : ""}
             <a href="/todo" className="edit-button">
               РЕДАКТИРАЙ
             </a>

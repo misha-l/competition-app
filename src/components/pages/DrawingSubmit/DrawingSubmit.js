@@ -1,19 +1,8 @@
 import React from "react";
 import "./DrawingSubmit.scss";
 import Pagecontainer from "../../Pagecontainer/Pagecontainer";
-import axios from "axios";
-
-/*
-  onSearchSubmit = async (term) => {
-    const response = await unsplash.get(
-      "https://api.unsplash.com/search/photos",
-      {
-        params: {
-          authorName: this.state.authorName,
-        },
-      }
-    );
-*/
+// import axios from "axios";
+import api from "../../../api/api";
 
 class DrawingSubmit extends React.Component {
   constructor(props) {
@@ -57,7 +46,7 @@ class DrawingSubmit extends React.Component {
         submitFields[fieldName] = this.state[fieldName];
       }
       console.log("Will Submit fields: ", submitFields);
-      const response = await axios.post(`http://localhost:3090/submissions/`, {
+      const response = await api.post(`/submissions/`, {
         ...submitFields,
       });
 

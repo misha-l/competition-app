@@ -10,6 +10,8 @@ class SubmissionItem extends React.Component {
   }
 
   render() {
+    console.log("Submission-item-props: ", this.props.item);
+
     const {
       _id,
       authorName,
@@ -18,6 +20,8 @@ class SubmissionItem extends React.Component {
       image,
       description,
       likes,
+      createdByUser,
+      likedByUser,
     } = this.props.item;
 
     return (
@@ -26,14 +30,7 @@ class SubmissionItem extends React.Component {
           <Link
             to={{
               pathname: `/drawing/${_id}`,
-              submissionData: {
-                authorName,
-                authorAge,
-                authorPlace,
-                image,
-                description,
-                likes,
-              },
+              submissionData: this.props.item,
             }}
           >
             <img src={image} alt="Рисунка" />
@@ -42,6 +39,8 @@ class SubmissionItem extends React.Component {
         <div className="gallery-item__info">
           <div className="gallery-item__info-author">
             <a href="/drawingpage">{authorName}</a>
+            {createdByUser ? " mine " : ""}
+            {likedByUser ? " liked " : ""}
           </div>
           <div className="gallery-item__info-likes">
             <a href="/todo">

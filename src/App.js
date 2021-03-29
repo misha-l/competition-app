@@ -15,12 +15,11 @@ import Signup from "./components/auth/Signup";
 import Signin from "./components/auth/Signin";
 import Signout from "./components/auth/Signout";
 import Restricted from "./components/pages/Restricted";
-// import Drawingpage from "./components/pages/Drawingpage/Drawingpage";
 import DrawingSubmit from "./components/pages/DrawingSubmit/DrawingSubmit";
+import AllByUser from "./components/pages/AllByUser/AllByUser";
 import SubmissionDetails from "./components/submissions/SubmissionDetails/SubmissionDetails";
 
 import Test from "./components/Test";
-
 import logo from "./images/logo.png";
 
 function App() {
@@ -50,7 +49,7 @@ function App() {
           <Route path="/finalists" component={Finalists} />
           <Route
             path="/Login"
-            render={(props) => <Login {...props} redirectTo="/Gallery" />}
+            render={(props) => <Login {...props} redirectTo="/gallery" />}
           />
           <Route path="/register" component={Register} />
           <Route path="/signup" component={Signup} />
@@ -64,6 +63,10 @@ function App() {
             path="/drawing/:submissionId"
             render={(props) => <SubmissionDetails {...props} />}
           />
+
+          <Route path="/profile/" component={AllByUser} />
+
+          <Route path="/submit-drawing" component={DrawingSubmit} />
           <Route path="/test" component={Test} />
         </BrowserRouter>
       </div>

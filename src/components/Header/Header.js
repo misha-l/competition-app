@@ -41,7 +41,6 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
-    console.log(window.location.pathname);
     const selectedLinks = this.state.links.map((link) =>
       link.url === window.location.pathname ? { ...link, selected: true } : link
     );
@@ -67,7 +66,13 @@ class Header extends React.Component {
         <div>
           <Link to="/signout">Изход</Link>
           <b>&nbsp;/&nbsp;</b>
-          <Link to="/todo">Профил</Link>
+          <Link
+            to={{
+              pathname: `/profile/`,
+            }}
+          >
+            Профил
+          </Link>
         </div>
       );
     } else {

@@ -10,7 +10,7 @@ class SubmissionItem extends React.Component {
   }
 
   render() {
-    console.log("Submission-item-props: ", this.props.item);
+    // console.log("Submission-item-props: ", this.props.item);
 
     const {
       _id,

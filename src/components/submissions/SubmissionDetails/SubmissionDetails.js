@@ -4,6 +4,7 @@ import { HiHeart } from "react-icons/hi";
 import { HiOutlineHeart } from "react-icons/hi";
 import { IoLocationSharp } from "react-icons/io5";
 import { ImFacebook } from "react-icons/im";
+import { Link } from "react-router-dom";
 import "./SubmissionDetails.scss";
 import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 
@@ -42,6 +43,7 @@ class SubmissionDetails extends React.Component {
   setSubmissionDataFields(newValues) {
     const newSubmissionData = { ...this.state.submissionData, ...newValues };
     this.setState({ submissionData: newSubmissionData });
+    console.log("STATE", this.state);
   }
 
   deleteSubmission = async (event) => {
@@ -57,8 +59,16 @@ class SubmissionDetails extends React.Component {
   likeSubmission = async (event) => {
     event.preventDefault();
 
-    console.log("submissionId", this.state.submissionId);
     const response = await api.post(
+      "/submissions/likes/" + this.state.submissionId
+    );
+    this.setSubmissionDataFields(response.data);
+  };
+
+  dislikeSubmission = async (event) => {
+    event.preventDefault();
+
+    const response = await api.delete(
       "/submissions/likes/" + this.state.submissionId
     );
     this.setSubmissionDataFields(response.data);
@@ -76,16 +86,31 @@ class SubmissionDetails extends React.Component {
               <div>
                 <i>{this.state.submissionData.likes.length}</i>
                 <b>
-                  <HiOutlineHeart />
+                  {this.state.submissionData.likedByUser ? (
+                    <a
+                      style={{ background: "transparent" }}
+                      onClick={this.dislikeSubmission}
+                    >
+                      <HiHeart />
+                    </a>
+                  ) : (
+                    <a
+                      style={{ background: "transparent" }}
+                      onClick={this.likeSubmission}
+                    >
+                      <HiOutlineHeart />
+                    </a>
+                  )}
                 </b>
-                <a href="/todo" onClick={this.likeSubmission}>
-                  ХАРЕСАЙ
-                </a>
               </div>
               <span>
-                <a href="/todo" onClick={this.deleteSubmission}>
-                  ИЗТРИЙ
-                </a>
+                {this.state.submissionData.createdByUser ? (
+                  <a href="/todo" onClick={this.deleteSubmission}>
+                    ИЗТРИЙ
+                  </a>
+                ) : (
+                  ""
+                )}
               </span>
             </div>
           </div>
@@ -99,11 +124,20 @@ class SubmissionDetails extends React.Component {
               &nbsp;{this.state.submissionData.authorPlace}
             </h3>
             <p>{this.state.submissionData.description}</p>
-            {this.state.submissionData.createdByUser ? " mine " : ""}
-            {this.state.submissionData.likedByUser ? " liked " : ""}
-            <a href="/todo" className="edit-button">
-              РЕДАКТИРАЙ
-            </a>
+
+            {this.state.submissionData.createdByUser ? (
+              <Link
+                to={{
+                  pathname: `/edit-drawing/${this.state.submissionId}`,
+                  submissionData: this.props.item,
+                }}
+              >
+                РЕДАКТИРАЙ
+              </Link>
+            ) : (
+              ""
+            )}
+
             <a href="/todo" className="share-f">
               СПОДЕЛИ <ImFacebook />
             </a>

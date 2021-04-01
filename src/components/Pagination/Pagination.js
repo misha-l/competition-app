@@ -1,25 +1,53 @@
 import React from "react";
 import "./Pagination.scss";
 
-const Pagination = () => {
-  return (
-    <div className="pagination">
-      <a className="arrow" href="/todo">
-        &#x276E;
-      </a>
-      <a href="/todo">1</a>
-      <a className="active" href="/todo">
-        2
-      </a>
-      <a href="/todo">3</a>
-      <a href="/todo">4</a>
-      <a href="/todo">5</a>
-      <a href="/todo">6</a>
-      <a href="/todo" className="arrow">
-        &#10095;
-      </a>
-    </div>
-  );
-};
+class Pagination extends React.Component {
+  setCurrentPage = (page) => {
+    console.log("alabala");
+    this.props.setCurrentPage(page);
+  };
+
+  handleClick = (page) => (event) => {
+    console.log("Page-set-to: ", page);
+    event.preventDefault();
+    this.setCurrentPage(page);
+  };
+
+  renderPages() {
+    let pagesDisplay = [];
+    for (let i = 0; i < this.props.totalPages; i++)
+      pagesDisplay.push(
+        <a
+          href="/"
+          onClick={this.handleClick(i)}
+          className={i === this.props.currentPage ? "active" : ""}
+        >
+          {i + 1}
+        </a>
+      );
+    return pagesDisplay;
+  }
+
+  render() {
+    console.log("Pagination-props", this.props);
+    return (
+      <div className="pagination">
+        {this.props.currentPage > 0 ? (
+          <a href="/" onClick={this.handleClick(this.props.currentPage - 1)}>
+            &#x276E;
+          </a>
+        ) : null}
+
+        {this.renderPages()}
+
+        {this.props.currentPage < this.props.totalPages - 1 ? (
+          <a href="/" onClick={this.handleClick(this.props.currentPage + 1)}>
+            &#10095;
+          </a>
+        ) : null}
+      </div>
+    );
+  }
+}
 
 export default Pagination;

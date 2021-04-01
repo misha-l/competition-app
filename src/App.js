@@ -16,6 +16,7 @@ import Signin from "./components/auth/Signin";
 import Signout from "./components/auth/Signout";
 import Restricted from "./components/pages/Restricted";
 import DrawingSubmit from "./components/pages/DrawingSubmit/DrawingSubmit";
+import DrawingEdit from "./components/pages/DrawingEdit/DrawingEdit";
 import AllByUser from "./components/pages/AllByUser/AllByUser";
 import SubmissionDetails from "./components/submissions/SubmissionDetails/SubmissionDetails";
 
@@ -67,6 +68,8 @@ function App() {
           <Route path="/profile/" component={AllByUser} />
 
           <Route path="/submit-drawing" component={DrawingSubmit} />
+          <Route path="/edit-drawing/:submissionId" component={DrawingEdit} />
+
           <Route path="/test" component={Test} />
         </BrowserRouter>
       </div>

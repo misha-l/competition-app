@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Header.scss";
 import { FaRegUserCircle } from "react-icons/fa";
+import { withRouter } from "react-router-dom";
 
 class Header extends React.Component {
   /*
@@ -42,22 +43,49 @@ class Header extends React.Component {
 
   componentDidMount() {
     const selectedLinks = this.state.links.map((link) =>
-      link.url === window.location.pathname ? { ...link, selected: true } : link
+      link.url === this.props.location.pathname
+        ? { ...link, selected: true }
+        : link
     );
     this.setState({ links: selectedLinks });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const selectedLinks = this.state.links.map((link) => {
+      return { ...link, selected: false };
+    });
+    if (JSON.stringify(selectedLinks) !== JSON.stringify(prevState.links))
+      this.setState({ links: selectedLinks });
+  }
+
+  //
+
+  isActive = (onActive) => (match, location) => {
+    if (match) {
+      onActive(match.url);
+    }
+    return match;
+  };
+
+  onActive = (matchUrl) => console.log("link " + matchUrl + " is active");
 
   renderlHeaderLinks() {
     const linksHtml = this.state.links.map((link) => {
       return (
         <li key={link.url}>
-          <Link to={link.url} className={link.selected ? "selected" : ""}>
+          <NavLink
+            to={link.url}
+            exact
+            isActive={this.isActive(this.onActive)}
+            activeClassName="active"
+            className={link.selected ? "selected" : ""}
+          >
             {link.caption} {link.selected}
-          </Link>
+          </NavLink>
         </li>
       );
     });
-    return <ul>{linksHtml}</ul>;
+    return <ul id="topmenu">{linksHtml}</ul>;
   }
 
   renderUserLinks() {
@@ -87,7 +115,6 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log("Header-props", this.props);
     return (
       <div className="header">
         <div className="login">
@@ -108,4 +135,4 @@ function mapStateToProps(state) {
   return { authenticated: state.auth.authenticated };
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

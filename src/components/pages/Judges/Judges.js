@@ -11,7 +11,7 @@ const Judges = () => {
           src={`${process.env.PUBLIC_URL}/assets/images/bogdana.jpg`}
           alt="Снимка"
         />
-        <div class="judge-profile--info">
+        <div className="judge-profile--info">
           <h1>Богдана Трифонова</h1>
           <h3>Радиоводещ</h3>
           <p>
@@ -29,7 +29,7 @@ const Judges = () => {
           src={`${process.env.PUBLIC_URL}/assets/images/aleksandra.jpg`}
           alt="Снимка"
         />
-        <div class="judge-profile--info">
+        <div className="judge-profile--info">
           <h1>Мая Велянова</h1>
           <h3>Ръководител Интериорен дизайн в MOMAX</h3>
           <p>
@@ -50,7 +50,7 @@ const Judges = () => {
           src={`${process.env.PUBLIC_URL}/assets/images/maya.jpg`}
           alt="Снимка"
         />
-        <div class="judge-profile--info">
+        <div className="judge-profile--info">
           <h1>Александра Димитрова</h1>
           <h3>Дизайнер – детска среда, Детски научен център „Музейко“</h3>
           <p>

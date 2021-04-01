@@ -3,12 +3,10 @@ import "./Pagination.scss";
 
 class Pagination extends React.Component {
   setCurrentPage = (page) => {
-    console.log("alabala");
     this.props.setCurrentPage(page);
   };
 
   handleClick = (page) => (event) => {
-    console.log("Page-set-to: ", page);
     event.preventDefault();
     this.setCurrentPage(page);
   };
@@ -20,6 +18,7 @@ class Pagination extends React.Component {
         <a
           href="/"
           onClick={this.handleClick(i)}
+          key={i}
           className={i === this.props.currentPage ? "active" : ""}
         >
           {i + 1}
@@ -29,7 +28,6 @@ class Pagination extends React.Component {
   }
 
   render() {
-    console.log("Pagination-props", this.props);
     return (
       <div className="pagination">
         {this.props.currentPage > 0 ? (

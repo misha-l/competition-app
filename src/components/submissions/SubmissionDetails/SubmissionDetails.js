@@ -62,6 +62,7 @@ class SubmissionDetails extends React.Component {
     const response = await api.post(
       "/submissions/likes/" + this.state.submissionId
     );
+    console.log("response", response);
     this.setSubmissionDataFields(response.data);
   };
 
@@ -131,6 +132,7 @@ class SubmissionDetails extends React.Component {
                   pathname: `/edit-drawing/${this.state.submissionId}`,
                   submissionData: this.props.item,
                 }}
+                className="edit-button"
               >
                 РЕДАКТИРАЙ
               </Link>

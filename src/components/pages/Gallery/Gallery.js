@@ -91,6 +91,27 @@ class Gallery extends React.Component {
     });
   };
 
+  onLikeSubmission = (likesData) => {
+    console.log("Received-in-Gallery: ", likesData);
+    this.setSubmissionFields(likesData);
+  };
+
+  onDislikeSubmission = (dislikesData) => {
+    this.setSubmissionFields(dislikesData);
+  };
+
+  setSubmissionFields(newValues) {
+    const newSubmissions = this.state.allSubmissions.map((submission) =>
+      submission._id === newValues._id
+        ? { ...submission, ...newValues }
+        : submission
+    );
+
+    this.setState({ allSubmissions: newSubmissions }, () => {
+      this.submisstionsToDisplay();
+    });
+  }
+
   render() {
     return (
       <Pagecontainer>
@@ -103,7 +124,11 @@ class Gallery extends React.Component {
           setCurrentPage={this.setCurrentPage}
         />
         <br />
-        <SubmissionList submissions={this.state.submissions} />
+        <SubmissionList
+          submissions={this.state.submissions}
+          onLikeSubmissionDyado={this.onLikeSubmission}
+          onDislikeSubmissionDyado={this.onDislikeSubmission}
+        />
         <br />
         <Pagination
           currentPage={this.state.currentPage}

@@ -5,6 +5,8 @@ import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 // import LoginForm from "../../LoginForm/LoginForm";
 import Signup from "../../auth/Signup";
 import { FaRegUserCircle } from "react-icons/fa";
+import { GrGooglePlus } from "react-icons/gr";
+import { GrFacebookOption } from "react-icons/gr";
 
 class Register extends React.Component {
   constructor(props) {
@@ -66,6 +68,12 @@ class Register extends React.Component {
               <br />
               може да влезте с:
             </p>
+            <a href="" className="login-google">
+              <GrGooglePlus /> вход с google
+            </a>
+            <a href="" className="login-facebook">
+              <GrFacebookOption /> вход с facebook
+            </a>
           </div>
         </div>
       </Pagecontainer>

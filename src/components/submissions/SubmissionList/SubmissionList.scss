@@ -133,17 +133,16 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                a {
-                    margin-left: 20px;
+                span {
+                    margin-left: 10px;
                     background: none;
                     text-decoration: none;
-                    color: #000;
                     color: #f02e25;
-                    font-size: 18px;
                     b {
                         float: left;
                         font-weight: bold;
                         font-size: 27px;
+                        margin-left: 10px;
                     }
                     i {
                         float: left;

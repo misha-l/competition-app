@@ -54,6 +54,17 @@ class DrawingSubmit extends React.Component {
     }
   };
 
+  OnFileUpload = (event) => {
+    const data = new FormData();
+    data.append("file", event.target.files[0]);
+    api.post("/submissions/upload", data).then((res) => {
+      console.log("UPlodaded-image: ", res.data);
+      this.setState({
+        image: "http://localhost:3090/images/" + res.data.filename,
+      });
+    });
+  };
+
   render() {
     // console.log("DrawingSubmit-state", this.state);
     return (
@@ -70,7 +81,7 @@ class DrawingSubmit extends React.Component {
                 onChange={(e) => this.setState({ authorName: e.target.value })}
               />
               {this.state.errors.authorName ? (
-                <span className="error">Моля, попълнете име.</span>
+                <span className="error">Моля, попълнете име на автора.</span>
               ) : (
                 ""
               )}
@@ -85,7 +96,7 @@ class DrawingSubmit extends React.Component {
                 onChange={(e) => this.setState({ authorAge: e.target.value })}
               />
               {this.state.errors.authorAge ? (
-                <span className="error">Моля, попълнете име на автора.</span>
+                <span className="error">Моля, попълнете години на автора.</span>
               ) : (
                 ""
               )}
@@ -108,12 +119,13 @@ class DrawingSubmit extends React.Component {
             </div>
             <br />
             <div className="insertpic">
-              <label>Url:</label>
+              <label>Снимка:</label>
+              <input type="file" name="file" onChange={this.OnFileUpload} />
               <input
-                type="text"
-                name="place"
+                type="hidden"
+                name="image"
                 value={this.state.image}
-                onChange={(e) => this.setState({ image: e.target.value })}
+                readOnly
               />
               {this.state.errors.image ? (
                 <span className="error">

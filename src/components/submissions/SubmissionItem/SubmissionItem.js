@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HiHeart } from "react-icons/hi";
 import { HiOutlineHeart } from "react-icons/hi";
+import api from "../../../api/api";
 
 class SubmissionItem extends React.Component {
   constructor(props) {
@@ -9,8 +10,27 @@ class SubmissionItem extends React.Component {
     this.imageRef = React.createRef();
   }
 
+  likeSubmission = async (event) => {
+    event.preventDefault();
+
+    const response = await api.post(
+      "/submissions/likes/" + this.props.item._id
+    );
+    console.log("response-like", response.data);
+    this.props.onLikeSubmissionTatko(response.data);
+  };
+
+  dislikeSubmission = async (event) => {
+    event.preventDefault();
+    const response = await api.delete(
+      "/submissions/likes/" + this.props.item._id
+    );
+    console.log("response-dislike", response.data);
+    this.props.onDislikeSubmissionTatko(response.data);
+  };
+
   render() {
-    // console.log("Submission-item-props: ", this.props.item);
+    console.log("Submission-item-props: ", this.props.item);
 
     const {
       _id,
@@ -23,6 +43,9 @@ class SubmissionItem extends React.Component {
       createdByUser,
       likedByUser,
     } = this.props.item;
+
+    //            {createdByUser ? " mine " : ""}
+    //            {likedByUser ? " liked " : ""}
 
     return (
       <div className="gallery-item">
@@ -38,17 +61,36 @@ class SubmissionItem extends React.Component {
         </div>
         <div className="gallery-item__info">
           <div className="gallery-item__info-author">
-            <a href="/drawingpage">{authorName}</a>
-            {createdByUser ? " mine " : ""}
-            {likedByUser ? " liked " : ""}
+            <Link
+              to={{
+                pathname: `/drawing/${_id}`,
+                submissionData: this.props.item,
+              }}
+            >
+              {authorName}
+            </Link>
           </div>
           <div className="gallery-item__info-likes">
-            <a href="/todo">
-              <i>3</i>
+            <span>
+              <i>{likes.length}</i>
               <b>
-                <HiOutlineHeart />
+                {likedByUser ? (
+                  <a
+                    style={{ background: "transparent" }}
+                    onClick={this.dislikeSubmission}
+                  >
+                    <HiHeart />
+                  </a>
+                ) : (
+                  <a
+                    style={{ background: "transparent" }}
+                    onClick={this.likeSubmission}
+                  >
+                    <HiOutlineHeart />
+                  </a>
+                )}
               </b>
-            </a>
+            </span>
           </div>
         </div>
       </div>

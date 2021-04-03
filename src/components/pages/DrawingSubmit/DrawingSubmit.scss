@@ -72,6 +72,24 @@
                     margin-top: 4px;
                 }
             }
+            span.error {
+                position: relative;
+                float: left;
+                color: #f02e25;
+                width: 60%;
+                margin-left: 40%;
+                padding-left: 10px;
+                text-align: left;
+                @include respond(lower900-max600) {
+                    width: 70%;
+                    margin-left: 30%;
+                }
+                @include respond(lower600-max450) {
+                    width: 100%;
+                    margin-left: 0;
+                    padding-left: 0;
+                }
+            }
         }
     }
     @include respond(lower1200-max900) {

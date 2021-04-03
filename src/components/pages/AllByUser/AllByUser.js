@@ -6,7 +6,10 @@ import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 import SubmissionList from "../../submissions/SubmissionList/SubmissionList";
 
 class AllByUser extends React.Component {
-  state = { submissions: [] };
+  state = {
+    maxSubmissions: 7,
+    submissions: [],
+  };
 
   async componentDidMount() {
     const response = await api.get("/submissions/?byUser=1");
@@ -18,7 +21,19 @@ class AllByUser extends React.Component {
     return (
       <Pagecontainer>
         <br />
-        <p>aaaa</p>
+        <p>
+          Имате публикувани {this.state.submissions.length} рисунки. Можете да
+          публикувате още{" "}
+          {this.state.maxSubmissions - Number(this.state.submissions.length)}{" "}
+          {this.state.maxSubmissions - Number(this.state.submissions.length) ===
+          1
+            ? "рисунка"
+            : "рисунки"}
+          .
+          <br />
+          Ако публикувате повече от {this.state.maxSubmissions} рисунки, само
+          първите {this.state.maxSubmissions} ще учавстват в конкурса.
+        </p>
         <br />
         <SubmissionList submissions={this.state.submissions} />
         <br />

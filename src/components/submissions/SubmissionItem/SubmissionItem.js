@@ -96,8 +96,6 @@ class SubmissionItem extends React.Component {
                   </Link>
                 )}
               </b>
-              {createdByUser ? " mine " : ""}
-              {actionsAllowed ? " user " : "guest"}
             </span>
           </div>
         </div>

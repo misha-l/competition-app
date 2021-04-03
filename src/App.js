@@ -1,23 +1,26 @@
 import { BrowserRouter, Route } from "react-router-dom";
 
 import "./App.scss";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Home from "./components/pages/Home/Home";
-import Gallery from "./components/pages/Gallery/Gallery";
-import Judges from "./components/pages/Judges/Judges";
-import Pravila from "./components/pages/Pravila/Pravila";
-import Login from "./components/pages/Login/Login";
-import Register from "./components/pages/Register/Register";
-import Finalists from "./components/pages/Finalists/Finalists";
-import Profile from "./components/pages/Profile/Profile";
+import Header from "./components/layout/Header/Header";
+import Footer from "./components/layout/Footer/Footer";
 
+import Home from "./pages/Home/Home";
+import Gallery from "./pages/Gallery/Gallery";
+import Judges from "./pages/Judges/Judges";
+import Pravila from "./pages/Pravila/Pravila";
+import Finalists from "./pages/Finalists/Finalists";
+import Profile from "./pages/Profile/Profile";
+
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+/*
 import Signup from "./components/auth/Signup";
 import Signin from "./components/auth/Signin";
+*/
 import Signout from "./components/auth/Signout";
-import Restricted from "./components/pages/Restricted";
-import DrawingSubmit from "./components/pages/DrawingSubmit/DrawingSubmit";
-import DrawingEdit from "./components/pages/DrawingEdit/DrawingEdit";
+
+import SubmissionAdd from "./components/submissions/SubmissionAdd/SubmissionAdd";
+import SubmissionEdit from "./components/submissions/SubmissionEdit/SubmissionEdit";
 import SubmissionDetails from "./components/submissions/SubmissionDetails/SubmissionDetails";
 
 import logo from "./images/logo.png";
@@ -52,13 +55,7 @@ function App() {
             render={(props) => <Login {...props} redirectTo="/gallery" />}
           />
           <Route path="/register" component={Register} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/signin" component={Signin} />
           <Route path="/signout" component={Signout} />
-          <Route
-            path="/restricted"
-            render={(props) => <Restricted {...props} />}
-          />
           <Route
             path="/drawing/:submissionId"
             render={(props) => <SubmissionDetails {...props} />}
@@ -66,8 +63,11 @@ function App() {
 
           <Route path="/profile" component={Profile} />
 
-          <Route path="/submit-drawing" component={DrawingSubmit} />
-          <Route path="/edit-drawing/:submissionId" component={DrawingEdit} />
+          <Route path="/submit-drawing" component={SubmissionAdd} />
+          <Route
+            path="/edit-drawing/:submissionId"
+            component={SubmissionEdit}
+          />
         </BrowserRouter>
       </div>
       <Footer />

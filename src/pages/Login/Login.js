@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Login.scss";
-import Pagecontainer from "../../Pagecontainer/Pagecontainer";
+import Pagecontainer from "../../components/layout/Pagecontainer/Pagecontainer";
 // import LoginForm from "../../LoginForm/LoginForm";
-import Signin from "../../auth/Signin";
+import Signin from "../../components/auth/Signin";
 import { FaRegUserCircle } from "react-icons/fa";
 import { GrGooglePlus } from "react-icons/gr";
 import { GrFacebookOption } from "react-icons/gr";

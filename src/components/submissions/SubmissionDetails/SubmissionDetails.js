@@ -6,7 +6,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { ImFacebook } from "react-icons/im";
 import { Link } from "react-router-dom";
 import "./SubmissionDetails.scss";
-import Pagecontainer from "../../Pagecontainer/Pagecontainer";
+import Pagecontainer from "../../layout/Pagecontainer/Pagecontainer";
 
 class SubmissionDetails extends React.Component {
   constructor(props) {
@@ -71,22 +71,32 @@ class SubmissionDetails extends React.Component {
               <div>
                 <i>{this.state.submissionData.likes.length}</i>
                 <b>
-                  {this.state.submissionData.likedByUser ? (
-                    <a
-                      href="#dislike"
-                      style={{ background: "transparent" }}
-                      onClick={this.dislikeSubmission}
-                    >
-                      <HiHeart />
-                    </a>
+                  {this.state.submissionData.actionsAllowed ? (
+                    this.state.submissionData.likedByUser ? (
+                      <a
+                        href="#dislike"
+                        style={{ background: "transparent" }}
+                        onClick={this.dislikeSubmission}
+                      >
+                        <HiHeart />
+                      </a>
+                    ) : (
+                      <a
+                        href="#like"
+                        style={{ background: "transparent" }}
+                        onClick={this.likeSubmission}
+                      >
+                        <HiOutlineHeart />
+                      </a>
+                    )
                   ) : (
-                    <a
-                      href="#like"
-                      style={{ background: "transparent" }}
-                      onClick={this.likeSubmission}
+                    <Link
+                      to={{
+                        pathname: "/login",
+                      }}
                     >
                       <HiOutlineHeart />
-                    </a>
+                    </Link>
                   )}
                 </b>
               </div>

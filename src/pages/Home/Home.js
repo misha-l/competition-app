@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.scss";
-import Pagecontainer from "../../Pagecontainer/Pagecontainer";
+import Pagecontainer from "../../components/layout/Pagecontainer/Pagecontainer";
 
 const Home = () => {
   return (

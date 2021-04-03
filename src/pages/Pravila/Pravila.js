@@ -1,11 +1,11 @@
 import React from "react";
 import "./Pravila.scss";
-import Pagecontainer from "../../Pagecontainer/Pagecontainer";
+import Pagecontainer from "../../components/layout/Pagecontainer/Pagecontainer";
 
 const Pravila = () => {
   return (
     <Pagecontainer>
-      <h1>ПРАВЛА ЗА УЧАСТИЕ</h1>
+      <h1>ПРАВИЛА ЗА УЧАСТИЕ</h1>
 
       <h3>I. OБЩИ УСЛОВИЯ</h3>
       <p>

@@ -118,15 +118,6 @@ class SubmissionListSearchPagination extends React.Component {
         ) : (
           ""
         )}
-        {this.props.displayPagination ? (
-          <Pagination
-            currentPage={this.state.currentPage}
-            totalPages={this.state.totalPages}
-            setCurrentPage={this.setCurrentPage}
-          />
-        ) : (
-          ""
-        )}
         <SubmissionList
           submissions={this.state.submissions}
           onLikeSubmission={this.onLikeSubmission}

@@ -1,6 +1,6 @@
 import React from "react";
-import Pagecontainer from "../../Pagecontainer/Pagecontainer";
-import SubmissionListSearchPagination from "../../submissions/SubmissionListSearchPagination/SubmissionListSearchPagination";
+import Pagecontainer from "../../components/layout/Pagecontainer/Pagecontainer";
+import SubmissionListSearchPagination from "../../components/submissions/SubmissionListSearchPagination/SubmissionListSearchPagination";
 
 class Profile extends React.Component {
   state = {

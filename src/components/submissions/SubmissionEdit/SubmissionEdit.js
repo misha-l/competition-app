@@ -1,25 +1,34 @@
 import React from "react";
-import "./DrawingSubmit.scss";
-import Pagecontainer from "../../Pagecontainer/Pagecontainer";
+//import "./DrawingSubmit.scss";
+import Pagecontainer from "../../layout/Pagecontainer/Pagecontainer";
 // import axios from "axios";
 import api from "../../../api/api";
-import requireAuth from "../../auth/requireAuth";
 
-class DrawingSubmit extends React.Component {
+class DrawingEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fieldList: [
-        "authorName",
-        "authorAge",
-        "authorPlace",
-        "image",
-        "description",
-      ],
+      submissionId: this.props.match.params.submissionId,
+      fieldList: ["authorName", "authorAge", "authorPlace", "description"],
+      submissionData: [],
       errors: {},
     };
     for (const fieldName of this.state.fieldList) {
-      this.state[fieldName] = "";
+      this.state.submissionData[fieldName] = "";
+    }
+  }
+
+  async componentDidMount() {
+    if (this.props.location && this.props.location.submissionData) {
+      console.log(
+        "We get submissionData as props",
+        this.props.location.submissionData
+      );
+      this.setState({ submissionData: this.props.location.submissionData });
+    } else {
+      const response = await api.get("/submissions/" + this.state.submissionId);
+      console.log("We fetch submissionData via API", response.data);
+      this.setState({ submissionData: response.data });
     }
   }
 
@@ -27,7 +36,7 @@ class DrawingSubmit extends React.Component {
     let errors = {};
     let errorsFound = false;
     for (const fieldName of this.state.fieldList) {
-      if (!this.state[fieldName]) {
+      if (!this.state.submissionData[fieldName]) {
         errors[fieldName] = true;
         errorsFound = true;
       }
@@ -44,27 +53,24 @@ class DrawingSubmit extends React.Component {
     if (!errorsFound) {
       let submitFields = {};
       for (const fieldName of this.state.fieldList) {
-        submitFields[fieldName] = this.state[fieldName];
+        submitFields[fieldName] = this.state.submissionData[fieldName];
       }
       console.log("Will Submit fields: ", submitFields);
-      const response = await api.post(`/submissions/`, {
-        ...submitFields,
-      });
+      const response = await api.patch(
+        "/submissions/" + this.state.submissionId,
+        {
+          ...submitFields,
+        }
+      );
 
       this.props.history.push("/drawing/" + response.data._id);
     }
   };
 
-  OnFileUpload = (event) => {
-    const data = new FormData();
-    data.append("file", event.target.files[0]);
-    api.post("/submissions/upload", data).then((res) => {
-      console.log("UPlodaded-image: ", res.data);
-      this.setState({
-        image: "http://localhost:3090/images/" + res.data.filename,
-      });
-    });
-  };
+  setSubmissionDataFields(newValues) {
+    const newSubmissionData = { ...this.state.submissionData, ...newValues };
+    this.setState({ submissionData: newSubmissionData });
+  }
 
   render() {
     // console.log("DrawingSubmit-state", this.state);
@@ -72,17 +78,19 @@ class DrawingSubmit extends React.Component {
       <Pagecontainer>
         <div className="drawingSendForm">
           <form onSubmit={this.onFormSubmit}>
-            <h1>Изпрати Рисунка</h1>
+            <h1>Редактирай Детайли</h1>
             <div className="author">
               <label>Име:</label>
               <input
                 type="text"
                 name="authorName"
-                value={this.state.authorName}
-                onChange={(e) => this.setState({ authorName: e.target.value })}
+                value={this.state.submissionData.authorName}
+                onChange={(e) =>
+                  this.setSubmissionDataFields({ authorName: e.target.value })
+                }
               />
               {this.state.errors.authorName ? (
-                <span className="error">Моля, попълнете име на автора.</span>
+                <span className="error">Моля, попълнете име.</span>
               ) : (
                 ""
               )}
@@ -93,11 +101,13 @@ class DrawingSubmit extends React.Component {
               <input
                 type="text"
                 name="age"
-                value={this.state.authorAge}
-                onChange={(e) => this.setState({ authorAge: e.target.value })}
+                value={this.state.submissionData.authorAge}
+                onChange={(e) =>
+                  this.setSubmissionDataFields({ authorAge: e.target.value })
+                }
               />
               {this.state.errors.authorAge ? (
-                <span className="error">Моля, попълнете години на автора.</span>
+                <span className="error">Моля, попълнете име на автора.</span>
               ) : (
                 ""
               )}
@@ -107,8 +117,10 @@ class DrawingSubmit extends React.Component {
               <input
                 type="text"
                 name="place"
-                value={this.state.authorPlace}
-                onChange={(e) => this.setState({ authorPlace: e.target.value })}
+                value={this.state.submissionData.authorPlace}
+                onChange={(e) =>
+                  this.setSubmissionDataFields({ authorPlace: e.target.value })
+                }
               />
               {this.state.errors.authorPlace ? (
                 <span className="error">
@@ -119,31 +131,17 @@ class DrawingSubmit extends React.Component {
               )}
             </div>
             <br />
-            <div className="insertpic">
-              <label>Снимка:</label>
-              <input type="file" name="file" onChange={this.OnFileUpload} />
-              <input
-                type="hidden"
-                name="image"
-                value={this.state.image}
-                readOnly
-              />
-              {this.state.errors.image ? (
-                <span className="error">
-                  Моля, попълнете адрес на рисунката.
-                </span>
-              ) : (
-                ""
-              )}
-            </div>
+
             <div className="description">
               <label>Описание:</label>
               <textarea
                 placeholder="Напишете няколко думи, които описват/представят рисунката ви."
                 rows={8}
                 cols={40}
-                value={this.state.description}
-                onChange={(e) => this.setState({ description: e.target.value })}
+                value={this.state.submissionData.description}
+                onChange={(e) =>
+                  this.setSubmissionDataFields({ description: e.target.value })
+                }
               />
               {this.state.errors.description ? (
                 <span className="error">
@@ -154,7 +152,7 @@ class DrawingSubmit extends React.Component {
               )}
             </div>
 
-            <input type="submit" value="Изпрати" className="submmitbutton" />
+            <input type="submit" value="Запази" className="submmitbutton" />
           </form>
         </div>
       </Pagecontainer>
@@ -162,4 +160,4 @@ class DrawingSubmit extends React.Component {
   }
 }
 
-export default requireAuth(DrawingSubmit);
+export default DrawingEdit;

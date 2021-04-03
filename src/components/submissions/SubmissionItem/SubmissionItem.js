@@ -16,8 +16,7 @@ class SubmissionItem extends React.Component {
     const response = await api.post(
       "/submissions/likes/" + this.props.item._id
     );
-    console.log("response-like", response.data);
-    this.props.onLikeSubmissionTatko(response.data);
+    this.props.onLikeSubmission(response.data);
   };
 
   dislikeSubmission = async (event) => {
@@ -25,23 +24,18 @@ class SubmissionItem extends React.Component {
     const response = await api.delete(
       "/submissions/likes/" + this.props.item._id
     );
-    console.log("response-dislike", response.data);
-    this.props.onDislikeSubmissionTatko(response.data);
+    this.props.onDislikeSubmission(response.data);
   };
 
   render() {
-    console.log("Submission-item-props: ", this.props.item);
-
     const {
       _id,
       authorName,
-      authorAge,
-      authorPlace,
       image,
-      description,
       likes,
       createdByUser,
       likedByUser,
+      actionsAllowed,
     } = this.props.item;
 
     //            {createdByUser ? " mine " : ""}
@@ -74,22 +68,36 @@ class SubmissionItem extends React.Component {
             <span>
               <i>{likes.length}</i>
               <b>
-                {likedByUser ? (
-                  <a
-                    style={{ background: "transparent" }}
-                    onClick={this.dislikeSubmission}
-                  >
-                    <HiHeart />
-                  </a>
+                {actionsAllowed ? (
+                  likedByUser ? (
+                    <a
+                      href="#dislike"
+                      style={{ background: "transparent" }}
+                      onClick={this.dislikeSubmission}
+                    >
+                      <HiHeart />
+                    </a>
+                  ) : (
+                    <a
+                      href="#like"
+                      style={{ background: "transparent" }}
+                      onClick={this.likeSubmission}
+                    >
+                      <HiOutlineHeart />
+                    </a>
+                  )
                 ) : (
-                  <a
-                    style={{ background: "transparent" }}
-                    onClick={this.likeSubmission}
+                  <Link
+                    to={{
+                      pathname: "/login",
+                    }}
                   >
                     <HiOutlineHeart />
-                  </a>
+                  </Link>
                 )}
               </b>
+              {createdByUser ? " mine " : ""}
+              {actionsAllowed ? " user " : "guest"}
             </span>
           </div>
         </div>

@@ -17,7 +17,10 @@ class Gallery extends React.Component {
   };
 
   async componentDidMount() {
+    console.log("Gallery-finalistsOnly: ", this.props.finalistsOnly);
+    console.log("Gallery was mounted - load via API");
     const response = await api.get("/submissions/");
+    console.log("allSubmissions: ", response.data);
     this.setState({ allSubmissions: response.data });
     this.submisstionsToDisplay();
   }
@@ -31,27 +34,12 @@ class Gallery extends React.Component {
   };
 
   submisstionsToDisplay = () => {
-    /* determine which submisstions to display */
+    /* determine which submisstions to display based on state */
 
     let submissions = [];
     if (this.state.kwd !== "") {
       /* filter by kwd */
 
-      /*
-      this.state.allSubmissions.forEach((element) => {
-        
-        if (
-          element["authorName"]
-            .toLowerCase()
-            .includes(this.state.kwd.toLowerCase()) ||
-          element["description"]
-            .toLowerCase()
-            .includes(this.state.kwd.toLowerCase())
-        ) {
-          submissions.push(element);
-        }
-       });
-        */
       submissions = this.state.allSubmissions.filter((element) => {
         return element["authorName"]
           .toLowerCase()
@@ -62,6 +50,10 @@ class Gallery extends React.Component {
           ? element
           : false;
       });
+    } else if (this.props.finalistsOnly) {
+      /* filter finalists based on likes */
+    } else if (this.props.ownedbyUserOnly) {
+      /* show only user's submissions */
     } else {
       submissions = this.state.allSubmissions;
     }
@@ -85,7 +77,6 @@ class Gallery extends React.Component {
   };
 
   setCurrentPage = (currentPage) => {
-    console.log("New current page is: ", currentPage);
     this.setState({ currentPage }, () => {
       this.submisstionsToDisplay();
     });
@@ -126,8 +117,8 @@ class Gallery extends React.Component {
         <br />
         <SubmissionList
           submissions={this.state.submissions}
-          onLikeSubmissionDyado={this.onLikeSubmission}
-          onDislikeSubmissionDyado={this.onDislikeSubmission}
+          onLikeSubmission={this.onLikeSubmission}
+          onDislikeSubmission={this.onDislikeSubmission}
         />
         <br />
         <Pagination

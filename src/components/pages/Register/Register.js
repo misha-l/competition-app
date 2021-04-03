@@ -68,10 +68,10 @@ class Register extends React.Component {
               <br />
               може да влезте с:
             </p>
-            <a href="" className="login-google">
+            <a href="#ggl-login" className="login-google">
               <GrGooglePlus /> вход с google
             </a>
-            <a href="" className="login-facebook">
+            <a href="#fb-login" className="login-facebook">
               <GrFacebookOption /> вход с facebook
             </a>
           </div>

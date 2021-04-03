@@ -12,9 +12,28 @@ class AllByUser extends React.Component {
   };
 
   async componentDidMount() {
-    const response = await api.get("/submissions/?byUser=1");
+    const response = await api.get("/submissions/user/?byUser=1");
     this.setState({ submissions: response.data });
     console.log("All By User State", this.state);
+  }
+
+  onLikeSubmission = (likesData) => {
+    console.log("Received-in-Gallery: ", likesData);
+    this.setSubmissionFields(likesData);
+  };
+
+  onDislikeSubmission = (dislikesData) => {
+    this.setSubmissionFields(dislikesData);
+  };
+
+  setSubmissionFields(newValues) {
+    const newSubmissions = this.state.submissions.map((submission) =>
+      submission._id === newValues._id
+        ? { ...submission, ...newValues }
+        : submission
+    );
+
+    this.setState({ submissions: newSubmissions });
   }
 
   render() {
@@ -35,7 +54,11 @@ class AllByUser extends React.Component {
           първите {this.state.maxSubmissions} ще учавстват в конкурса.
         </p>
         <br />
-        <SubmissionList submissions={this.state.submissions} />
+        <SubmissionList
+          submissions={this.state.submissions}
+          onLikeSubmission={this.onLikeSubmission}
+          onDislikeSubmission={this.onDislikeSubmission}
+        />
         <br />
         <br />
       </Pagecontainer>

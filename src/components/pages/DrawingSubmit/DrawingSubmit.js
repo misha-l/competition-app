@@ -3,6 +3,7 @@ import "./DrawingSubmit.scss";
 import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 // import axios from "axios";
 import api from "../../../api/api";
+import requireAuth from "../../auth/requireAuth";
 
 class DrawingSubmit extends React.Component {
   constructor(props) {
@@ -161,4 +162,4 @@ class DrawingSubmit extends React.Component {
   }
 }
 
-export default DrawingSubmit;
+export default requireAuth(DrawingSubmit);

@@ -89,6 +89,7 @@ class SubmissionDetails extends React.Component {
                 <b>
                   {this.state.submissionData.likedByUser ? (
                     <a
+                      href="#dislike"
                       style={{ background: "transparent" }}
                       onClick={this.dislikeSubmission}
                     >
@@ -96,6 +97,7 @@ class SubmissionDetails extends React.Component {
                     </a>
                   ) : (
                     <a
+                      href="#like"
                       style={{ background: "transparent" }}
                       onClick={this.likeSubmission}
                     >

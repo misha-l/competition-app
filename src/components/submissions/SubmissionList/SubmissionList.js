@@ -10,8 +10,8 @@ class SubmissionList extends React.Component {
         <SubmissionItem
           key={item._id}
           item={item}
-          onLikeSubmissionTatko={this.props.onLikeSubmissionDyado}
-          onDislikeSubmissionTatko={this.props.onDislikeSubmissionDyado}
+          onLikeSubmission={this.props.onLikeSubmission}
+          onDislikeSubmission={this.props.onDislikeSubmission}
         />
       );
     });

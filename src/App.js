@@ -20,7 +20,6 @@ import DrawingEdit from "./components/pages/DrawingEdit/DrawingEdit";
 import AllByUser from "./components/pages/AllByUser/AllByUser";
 import SubmissionDetails from "./components/submissions/SubmissionDetails/SubmissionDetails";
 
-import Test from "./components/Test";
 import logo from "./images/logo.png";
 
 function App() {
@@ -47,7 +46,10 @@ function App() {
           <Route path="/gallery" component={Gallery} />
           <Route path="/judges" component={Judges} />
           <Route path="/pravila" component={Pravila} />
-          <Route path="/finalists" component={Finalists} />
+          <Route
+            path="/finalists"
+            render={(props) => <Gallery {...props} finalistsOnly={true} />}
+          />
           <Route
             path="/Login"
             render={(props) => <Login {...props} redirectTo="/gallery" />}
@@ -69,8 +71,6 @@ function App() {
 
           <Route path="/submit-drawing" component={DrawingSubmit} />
           <Route path="/edit-drawing/:submissionId" component={DrawingEdit} />
-
-          <Route path="/test" component={Test} />
         </BrowserRouter>
       </div>
       <Footer />

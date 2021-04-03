@@ -1,7 +1,7 @@
 const prod = {
   url: {
-    APP_URL: "https://myapp.herokuapp.com",
-    API_URL: "https://myapp.herokuapp.com",
+    APP_URL: "https://reactjs-competition-app.herokuapp.com",
+    API_URL: "https://competition-app-backend.herokuapp.com",
   },
 };
 

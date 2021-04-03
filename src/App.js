@@ -7,9 +7,10 @@ import Home from "./components/pages/Home/Home";
 import Gallery from "./components/pages/Gallery/Gallery";
 import Judges from "./components/pages/Judges/Judges";
 import Pravila from "./components/pages/Pravila/Pravila";
-import Finalists from "./components/pages/Finalists/Finalists";
 import Login from "./components/pages/Login/Login";
 import Register from "./components/pages/Register/Register";
+import Finalists from "./components/pages/Finalists/Finalists";
+import Profile from "./components/pages/Profile/Profile";
 
 import Signup from "./components/auth/Signup";
 import Signin from "./components/auth/Signin";
@@ -17,7 +18,6 @@ import Signout from "./components/auth/Signout";
 import Restricted from "./components/pages/Restricted";
 import DrawingSubmit from "./components/pages/DrawingSubmit/DrawingSubmit";
 import DrawingEdit from "./components/pages/DrawingEdit/DrawingEdit";
-import AllByUser from "./components/pages/AllByUser/AllByUser";
 import SubmissionDetails from "./components/submissions/SubmissionDetails/SubmissionDetails";
 
 import logo from "./images/logo.png";
@@ -46,10 +46,7 @@ function App() {
           <Route path="/gallery" component={Gallery} />
           <Route path="/judges" component={Judges} />
           <Route path="/pravila" component={Pravila} />
-          <Route
-            path="/finalists"
-            render={(props) => <Gallery {...props} finalistsOnly={true} />}
-          />
+          <Route path="/finalists" component={Finalists} />
           <Route
             path="/Login"
             render={(props) => <Login {...props} redirectTo="/gallery" />}
@@ -67,7 +64,7 @@ function App() {
             render={(props) => <SubmissionDetails {...props} />}
           />
 
-          <Route path="/profile/" component={AllByUser} />
+          <Route path="/profile" component={Profile} />
 
           <Route path="/submit-drawing" component={DrawingSubmit} />
           <Route path="/edit-drawing/:submissionId" component={DrawingEdit} />

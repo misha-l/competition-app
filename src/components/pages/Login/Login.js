@@ -24,13 +24,9 @@ class Login extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log("Login props: ", this.props);
-    console.log("Login state: ", this.state);
-  }
+  componentDidMount() {}
 
   onLoginRedirect = () => {
-    console.log("Will redirect to: ", this.state.redirectTo);
     this.props.history.push(this.state.redirectTo);
   };
 

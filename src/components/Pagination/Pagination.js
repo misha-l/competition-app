@@ -13,6 +13,7 @@ class Pagination extends React.Component {
 
   renderPages() {
     let pagesDisplay = [];
+    if (this.props.totalPages <= 1) return pagesDisplay;
     for (let i = 0; i < this.props.totalPages; i++)
       pagesDisplay.push(
         <a

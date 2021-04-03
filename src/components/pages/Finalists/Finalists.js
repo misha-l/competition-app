@@ -1,15 +1,18 @@
 import React from "react";
-import "./Finalists.scss";
 import Pagecontainer from "../../Pagecontainer/Pagecontainer";
+import SubmissionListSearchPagination from "../../submissions/SubmissionListSearchPagination/SubmissionListSearchPagination";
 
-const Finalists = () => {
-  return (
-    <div>
+class Gallery extends React.Component {
+  render() {
+    return (
       <Pagecontainer>
-        <br />
+        <SubmissionListSearchPagination
+          finalistsOnly={true}
+          displayPagination={true}
+        />
       </Pagecontainer>
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default Finalists;
+export default Gallery;

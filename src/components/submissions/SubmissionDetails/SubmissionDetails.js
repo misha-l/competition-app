@@ -11,7 +11,6 @@ import Pagecontainer from "../../Pagecontainer/Pagecontainer";
 class SubmissionDetails extends React.Component {
   constructor(props) {
     super(props);
-    console.log("SubmissionDetails-props", props);
     this.state = {
       submissionId: this.props.match.params.submissionId,
       submissionData: { likes: [] },
@@ -20,30 +19,16 @@ class SubmissionDetails extends React.Component {
 
   async componentDidMount() {
     if (this.props.location && this.props.location.submissionData) {
-      console.log(
-        "We get submissionData as props",
-        this.props.location.submissionData
-      );
       this.setState({ submissionData: this.props.location.submissionData });
     } else {
       const response = await api.get("/submissions/" + this.state.submissionId);
-      console.log("We fetch submissionData via API", response.data);
       this.setState({ submissionData: response.data });
     }
   }
 
-  /*
-  async componentDidUpdate() {
-    const response = await api.get("/submissions/" + this.state.submissionId);
-    console.log("Update submissionData via API", response.data);
-    this.setState({ submissionData: response.data });
-  }
-  */
-
   setSubmissionDataFields(newValues) {
     const newSubmissionData = { ...this.state.submissionData, ...newValues };
     this.setState({ submissionData: newSubmissionData });
-    console.log("STATE", this.state);
   }
 
   deleteSubmission = async (event) => {
@@ -62,7 +47,6 @@ class SubmissionDetails extends React.Component {
     const response = await api.post(
       "/submissions/likes/" + this.state.submissionId
     );
-    console.log("response", response);
     this.setSubmissionDataFields(response.data);
   };
 

@@ -47,7 +47,6 @@ class Signin extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Siging-redux-state", state);
   return { errorMessage: state.auth.errorMessage };
 }
 

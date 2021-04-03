@@ -67,7 +67,7 @@ class Header extends React.Component {
     return match;
   };
 
-  onActive = (matchUrl) => console.log("link " + matchUrl + " is active");
+  onActive = (matchUrl) => {};
 
   renderlHeaderLinks() {
     const linksHtml = this.state.links.map((link) => {

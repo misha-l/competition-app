@@ -24,10 +24,7 @@ class Register extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log("Register props: ", this.props);
-    console.log("Register state: ", this.state);
-  }
+  componentDidMount() {}
 
   onLoginRedirect = () => {
     console.log("Will redirect to: ", this.state.redirectTo);

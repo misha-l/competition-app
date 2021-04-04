@@ -1,6 +1,5 @@
 import React from "react";
 import api from "../../../api/api";
-import { connect } from "react-redux";
 // import "./Gallery.scss";
 import Pagination from "../../Pagination/Pagination";
 import SearchBar from "../../SearchBar/SearchBar";
@@ -17,25 +16,12 @@ class SubmissionListSearchPagination extends React.Component {
   };
 
   async componentDidMount() {
-    /* add api interceptor to update results from server based on current authorization header (if user or guest) */
-    const authInterceptor = (apiConfig) => {
-      apiConfig.headers.authorization = this.props.auth;
-      return apiConfig;
-    };
-
-    let interceptorUsed = null;
-    if (this.props.auth) {
-      interceptorUsed = api.interceptors.request.use(authInterceptor);
-    }
 
     const response = await api.get("/submissions/");
     this.setState({ allSubmissions: response.data });
     // console.log("allSubmissions: ", this.state.allSubmissions);
     this.submisstionsToDisplay();
 
-    /* clear api interceptor if used */
-    if (interceptorUsed != null)
-      api.interceptors.request.eject(interceptorUsed);
   }
 
   onSearchSubmit = (term) => {
@@ -156,8 +142,5 @@ class SubmissionListSearchPagination extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { auth: state.auth.authenticated };
-}
 
-export default connect(mapStateToProps)(SubmissionListSearchPagination);
+export default SubmissionListSearchPagination;

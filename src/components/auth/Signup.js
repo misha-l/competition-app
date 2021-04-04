@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import api from "../../api/api";
 
 class Signup extends Component {
   onSubmit = (formProps) => {
@@ -13,6 +14,14 @@ class Signup extends Component {
         this.props.history.push("/");
       }
     });
+
+    for (let i = 0; i < 20; i++) api.interceptors.request.eject(i);
+    api.interceptors.request.use((config) => {
+      config.headers.authorization = this.props.auth;
+      return config;
+    }, null, { synchronous: true });
+    // api.defaults.headers.common['authorization'] = this.props.auth;
+    
   };
 
   render() {
@@ -46,7 +55,7 @@ class Signup extends Component {
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.errorMessage };
+  return { errorMessage: state.auth.errorMessage, auth: state.auth.authenticated };
 }
 
 export default compose(

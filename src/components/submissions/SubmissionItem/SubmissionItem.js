@@ -62,7 +62,6 @@ class SubmissionItem extends React.Component {
               }}
             >
               {authorName}
-              {actionsAllowed ? " user " : " guest "}
             </Link>
           </div>
           <div className="gallery-item__info-likes">

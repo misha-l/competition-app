@@ -35,6 +35,9 @@ To vote and participate, they need to login/register first.
 * Error handling and data validation :heavy_check_mark:
 * Use a state management solution (Redux) :heavy_check_mark: for authentication only
 
+## Preview:
+![](src/images/preview1.jpg)
+
 ## Available Scripts
 
 In the frontend project directory, you can run:

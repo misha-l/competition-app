@@ -54,12 +54,12 @@ function App() {
             path="/Login"
             render={(props) => <Login {...props} redirectTo="/gallery" />}
           />
-          <Route path="/register" component={Register} />
-          <Route path="/signout" component={Signout} />
           <Route
-            path="/drawing/:submissionId"
-            render={(props) => <SubmissionDetails {...props} />}
+            path="/register"
+            render={(props) => <Register {...props} redirectTo="/gallery" />}
           />
+          <Route path="/signout" component={Signout} />
+          <Route path="/drawing/:submissionId" component={SubmissionDetails} />
 
           <Route path="/profile" component={Profile} />
 

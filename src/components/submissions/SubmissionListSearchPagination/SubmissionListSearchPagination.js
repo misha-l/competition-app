@@ -1,5 +1,6 @@
 import React from "react";
 import api from "../../../api/api";
+import { connect } from "react-redux";
 // import "./Gallery.scss";
 import Pagination from "../../Pagination/Pagination";
 import SearchBar from "../../SearchBar/SearchBar";
@@ -16,10 +17,25 @@ class SubmissionListSearchPagination extends React.Component {
   };
 
   async componentDidMount() {
+    /* add api interceptor to update results from server based on current authorization header (if user or guest) */
+    const authInterceptor = (apiConfig) => {
+      apiConfig.headers.authorization = this.props.auth;
+      return apiConfig;
+    };
+
+    let interceptorUsed = null;
+    if (this.props.auth) {
+      interceptorUsed = api.interceptors.request.use(authInterceptor);
+    }
+
     const response = await api.get("/submissions/");
     this.setState({ allSubmissions: response.data });
-    console.log("allSubmissions: ", this.state.allSubmissions);
+    // console.log("allSubmissions: ", this.state.allSubmissions);
     this.submisstionsToDisplay();
+
+    /* clear api interceptor if used */
+    if (interceptorUsed != null)
+      api.interceptors.request.eject(interceptorUsed);
   }
 
   onSearchSubmit = (term) => {
@@ -54,12 +70,14 @@ class SubmissionListSearchPagination extends React.Component {
         })
         .slice(0, 8);
     } else if (this.props.ownedbyUserOnly) {
-      /* show only user's submissions */
+      /* display only user's submissions */
 
       submissions = this.state.allSubmissions.filter(
         (submission) => submission.createdByUser
       );
     } else {
+      /* display all submissions */
+
       submissions = this.state.allSubmissions;
     }
 
@@ -68,8 +86,9 @@ class SubmissionListSearchPagination extends React.Component {
     this.setState({ displayedSubmissions: displayedSubmissions });
     */
 
-    if (typeof this.props.updateNumberOfSubmissions == "function")
+    if (typeof this.props.updateNumberOfSubmissions == "function") {
       this.props.updateNumberOfSubmissions(submissions.length);
+    }
 
     const totalPages = Math.ceil(submissions.length / this.state.itemsPerPage);
     this.setState({ totalPages: totalPages });
@@ -137,4 +156,8 @@ class SubmissionListSearchPagination extends React.Component {
   }
 }
 
-export default SubmissionListSearchPagination;
+function mapStateToProps(state) {
+  return { auth: state.auth.authenticated };
+}
+
+export default connect(mapStateToProps)(SubmissionListSearchPagination);

@@ -18,6 +18,7 @@ class Signin extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    console.log("props", this.props);
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit)} className="login-form">

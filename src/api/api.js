@@ -9,7 +9,6 @@ const authToken = state.auth.authenticated;
 const apiUri = process.env.API_URI ? process.env.API_URI : config.url.API_URL;
 
 console.log("api-Uri: ", apiUri);
-console.log("Process env: ", process.env);
 
 // const state = store.getState();
 export default axios.create({

@@ -3,12 +3,15 @@ import "./SubmissionAdd.scss";
 import Pagecontainer from "../../layout/Pagecontainer/Pagecontainer";
 // import axios from "axios";
 import api from "../../../api/api";
+import { config } from "../../../config";
 import requireAuth from "../../auth/requireAuth";
-
 class DrawingSubmit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      imagesDomain: process.env.API_URI
+        ? process.env.API_URI
+        : config.url.API_URL,
       fieldList: [
         "authorName",
         "authorAge",
@@ -60,7 +63,7 @@ class DrawingSubmit extends React.Component {
     data.append("file", event.target.files[0]);
     api.post("/submissions/upload", data).then((res) => {
       this.setState({
-        image: "http://localhost:3090/images/" + res.data.filename,
+        image: this.state.imagesDomain + "/images/" + res.data.filename,
       });
     });
   };

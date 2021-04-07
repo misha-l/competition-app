@@ -16,12 +16,10 @@ class SubmissionListSearchPagination extends React.Component {
   };
 
   async componentDidMount() {
-
     const response = await api.get("/submissions/");
     this.setState({ allSubmissions: response.data });
     // console.log("allSubmissions: ", this.state.allSubmissions);
     this.submisstionsToDisplay();
-
   }
 
   onSearchSubmit = (term) => {
@@ -141,6 +139,5 @@ class SubmissionListSearchPagination extends React.Component {
     );
   }
 }
-
 
 export default SubmissionListSearchPagination;

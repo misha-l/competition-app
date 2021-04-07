@@ -116,16 +116,23 @@ class SubmissionListSearchPagination extends React.Component {
   render() {
     return (
       <div>
-        {this.props.displaySearchBar ? (
-          <SearchBar onSubmit={this.onSearchSubmit} />
+        {this.props.displaySearchBar && this.state.allSubmissions.length ? (
+          <SearchBar
+            onSubmit={this.onSearchSubmit}
+            placeholder="Име на участник/рисунка"
+          />
         ) : (
           ""
         )}
-        <SubmissionList
-          submissions={this.state.submissions}
-          onLikeSubmission={this.onLikeSubmission}
-          onDislikeSubmission={this.onDislikeSubmission}
-        />
+        {this.state.allSubmissions.length ? (
+          <SubmissionList
+            submissions={this.state.submissions}
+            onLikeSubmission={this.onLikeSubmission}
+            onDislikeSubmission={this.onDislikeSubmission}
+          />
+        ) : (
+          "Все още нямаме участници. Изпрати своята рисунка и стани първият ни участник!"
+        )}
         {this.props.displayPagination ? (
           <Pagination
             currentPage={this.state.currentPage}

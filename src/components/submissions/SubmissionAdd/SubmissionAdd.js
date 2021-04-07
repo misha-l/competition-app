@@ -122,7 +122,7 @@ class DrawingSubmit extends React.Component {
             </div>
             <br />
             <div className="insertpic">
-              <label>Снимка:</label>
+              <label>Рисунка:</label>
               <input type="file" name="file" onChange={this.OnFileUpload} />
               <input
                 type="hidden"

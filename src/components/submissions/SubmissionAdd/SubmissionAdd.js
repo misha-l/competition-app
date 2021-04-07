@@ -121,11 +121,12 @@ class DrawingSubmit extends React.Component {
             <br />
             <div className="insertpic">
               <label>Снимка:</label>
+              <input type="file" name="file" onChange={this.OnFileUpload} />
               <input
-                type="text"
+                type="hidden"
                 name="image"
                 value={this.state.image}
-                onChange={(e) => this.setState({ image: e.target.value })}
+                readOnly
               />
               {this.state.errors.image ? (
                 <span className="error">

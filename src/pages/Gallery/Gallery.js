@@ -4,6 +4,7 @@ import SubmissionListSearchPagination from "../../components/submissions/Submiss
 
 class Gallery extends React.Component {
   render() {
+    // console.log("Gallery-props: ", this.props);
     return (
       <Pagecontainer>
         <SubmissionListSearchPagination

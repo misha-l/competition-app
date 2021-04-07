@@ -14,6 +14,8 @@ export default (ChildComponent) => {
         redirectTo = props.location.pathname;
       }
 
+      // console.log("requireAuth-will-redirectTo: ", redirectTo);
+
       this.state = {
         redirectTo: redirectTo,
       };
@@ -30,6 +32,7 @@ export default (ChildComponent) => {
     }
 
     shouldNavigateAway() {
+      /* if not logged user, redirect  */
       if (!this.props.auth) {
         this.props.history.push({
           pathname: "/Login",

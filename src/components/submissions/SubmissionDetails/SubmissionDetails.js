@@ -91,8 +91,10 @@ class SubmissionDetails extends React.Component {
                     )
                   ) : (
                     <Link
+                      style={{ background: "transparent" }}
                       to={{
                         pathname: "/login",
+                        redirectTo: this.props.location.pathname,
                       }}
                     >
                       <HiOutlineHeart />

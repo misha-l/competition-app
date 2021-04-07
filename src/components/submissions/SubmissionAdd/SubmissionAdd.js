@@ -46,7 +46,7 @@ class DrawingSubmit extends React.Component {
       for (const fieldName of this.state.fieldList) {
         submitFields[fieldName] = this.state[fieldName];
       }
-      console.log("Will Submit fields: ", submitFields);
+      // console.log("Will Submit fields: ", submitFields);
       const response = await api.post(`/submissions/`, {
         ...submitFields,
       });
@@ -59,7 +59,6 @@ class DrawingSubmit extends React.Component {
     const data = new FormData();
     data.append("file", event.target.files[0]);
     api.post("/submissions/upload", data).then((res) => {
-      console.log("UPlodaded-image: ", res.data);
       this.setState({
         image: "http://localhost:3090/images/" + res.data.filename,
       });

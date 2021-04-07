@@ -10,9 +10,9 @@ import Judges from "./pages/Judges/Judges";
 import Pravila from "./pages/Pravila/Pravila";
 import Finalists from "./pages/Finalists/Finalists";
 import Profile from "./pages/Profile/Profile";
-
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+
 /*
 import Signup from "./components/auth/Signup";
 import Signin from "./components/auth/Signin";

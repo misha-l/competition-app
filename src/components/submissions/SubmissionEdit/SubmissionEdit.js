@@ -3,6 +3,7 @@ import React from "react";
 import Pagecontainer from "../../layout/Pagecontainer/Pagecontainer";
 // import axios from "axios";
 import api from "../../../api/api";
+import requireAuth from "../../auth/requireAuth";
 
 class DrawingEdit extends React.Component {
   constructor(props) {
@@ -160,4 +161,5 @@ class DrawingEdit extends React.Component {
   }
 }
 
-export default DrawingEdit;
+// export default DrawingEdit;
+export default requireAuth(DrawingEdit);

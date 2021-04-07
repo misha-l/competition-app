@@ -12,12 +12,16 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     /* where to redirect after succesful login */
+    /* by default, redirect to / */
     let redirectTo = "/";
+    /* if props.location.redirectTo passed use it for redirect */
     if (props && props.location && props.location.redirectTo) {
       redirectTo = props.location.redirectTo;
     } else if (props && props.redirectTo) {
       redirectTo = props.redirectTo;
     }
+
+    // console.log("Login-will-redirectTo: ", redirectTo);
 
     this.state = {
       redirectTo: redirectTo,
